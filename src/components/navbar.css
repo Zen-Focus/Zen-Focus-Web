@@ -1,0 +1,16 @@
+#navbar{
+  display: flex;
+  align-items: center;
+}
+
+.icon{
+  cursor: pointer;
+}
+
+#settings{
+  margin-left: auto;
+}
+
+#sounds{
+  margin-right: 10px;
+}

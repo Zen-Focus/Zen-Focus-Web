@@ -1,0 +1,10 @@
+body{
+  background: #1F1B2E;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+
+#app{
+  width: 40%;
+  margin: 20px auto;
+}
