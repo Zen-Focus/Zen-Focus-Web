@@ -1,3 +1,8 @@
+#timer{
+  width: 40%;
+  margin: 200px auto;
+}
+
 #svg{
   transform: scaleX(-1) rotate(-90deg);
   overflow: visible;

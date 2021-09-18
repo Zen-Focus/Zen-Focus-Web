@@ -5,6 +5,7 @@ body{
 }
 
 #app{
-  width: 40%;
+  /* width: 40%; */
+  width: 90%;
   margin: 20px auto;
 }
