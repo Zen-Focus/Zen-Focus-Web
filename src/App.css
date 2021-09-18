@@ -1,6 +1,6 @@
 body{
   background: #1F1B2E;
-  color: #ffffff;
+  color: #E0E0E1;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -8,4 +8,8 @@ body{
   /* width: 40%; */
   width: 90%;
   margin: 20px auto;
+}
+
+.icon{
+  cursor: pointer;
 }

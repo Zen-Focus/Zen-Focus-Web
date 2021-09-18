@@ -29,26 +29,23 @@
 }
 
 #text{
-  color: #E0E0E1;
   text-align: center;
   font-size: 3em;
-  margin-bottom: -60%;
+  margin-bottom: -63%;
   margin-top: 30%;
 }
 
-.timer{
+.icon.timer{
   position: absolute;
-  
   z-index: 1;
-  cursor: pointer;
 }
 
 #start{
-  top: 62px;
+  top: 77px;
   left: 94px;
 }
 
 #pause{
-  left: 86px;
-  top: 56px;
+  left: 83px;
+  top: 70px;
 }

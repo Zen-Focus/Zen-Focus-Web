@@ -13,8 +13,8 @@ const Timer = () => {
       <div className="widget">
         <div id="text">15:00</div>
         { isPaused
-          ? <Icon id="start" className="icon timer" icon="fa-solid:play" color="#ffffff" height={21} onClick={handleClick} />
-          : <Icon id="pause" className="icon timer" icon="carbon:pause-filled" color="#ffffff" height={30} onClick={handleClick} />
+          ? <Icon id="start" className="icon timer" icon="fa-solid:play" height={21} onClick={handleClick} />
+          : <Icon id="pause" className="icon timer" icon="carbon:pause-filled" height={37} onClick={handleClick} />
         }
         <svg id="svg" width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <circle id="barContainer" r={RADIUS} cx="100" cy="100" fill="transparent" strokeDasharray={2*Math.PI*RADIUS} strokeDashoffset="0"></circle>
