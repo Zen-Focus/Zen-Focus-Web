@@ -1,6 +1,12 @@
 #navbar{
   display: flex;
   align-items: center;
+  height: 35px;
+}
+
+#options{
+  display: flex;
+  align-items: center;
 }
 
 #soundsContainer{
