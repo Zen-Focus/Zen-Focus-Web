@@ -49,6 +49,7 @@ const Options = () => {
     <div id="options">
       <Icon id="sounds" className="icon" icon="fluent:headphones-sound-wave-20-filled" height={30} onClick={() => setShowMenu(!showMenu)}/>
       <div id="soundsContainer" style={{ "visibility": showMenu ? "visible" : "hidden" }} >
+        <Icon id="mute" className="sounds icon" icon="carbon:volume-mute" height={20} />
         <Icon id="music" className="sounds icon" icon="carbon:music" height={20} onClick={() => playSound('music')}/>
         <Icon id="rain" className="sounds icon" icon="carbon:rain" height={20} onClick={() => playSound('rain')}/>
       </div>

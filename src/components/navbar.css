@@ -34,3 +34,7 @@
 .sounds.active{
   color: #ffffff;
 }
+
+#mute{
+  margin-bottom: 12px;
+}
