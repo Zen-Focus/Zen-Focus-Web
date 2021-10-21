@@ -1,0 +1,25 @@
+#soundsContainer{
+  position: absolute;
+  top: 70px;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+#sounds{
+  margin-right: 10px;
+}
+
+.sounds{
+  margin: 0 auto;
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sounds.active{
+  color: #ffffff;
+}
+
+#mute{
+  margin-bottom: 12px;
+}
