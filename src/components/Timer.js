@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react'
 
 import './timer.css'
 
-const Countdown = ({minutes}) => {
+const Countdown = ({minutes, hidden}) => {
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState(minutes*60)
   const [isPaused, setIsPaused] = useState(true)
@@ -38,7 +38,7 @@ const Countdown = ({minutes}) => {
   }, [time]) //eslint-disable-line
 
   return(
-    <div id="timer">
+    <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
         <div id="text">{showTime()}</div>
         { isPaused

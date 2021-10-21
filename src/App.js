@@ -6,15 +6,16 @@ import SettingsMenu from './components/SettingsMenu'
 /* import Footer from './components/Footer' */
 
 function App() {
-  const [openSettings, setOpenSettings] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
 
   return (
     <div id="app">
-      <Navbar openSettings={() => setOpenSettings(!openSettings)} hideIcons={openSettings} />
-      { openSettings
+      <Navbar openSettings={() => setShowSettings(!showSettings)} hideIcons={showSettings} />
+      { showSettings
         ? <SettingsMenu />
-        : <Timer minutes={0.2} />
+        : null
       }
+      <Timer minutes={0.2} hidden={showSettings} />
       {/* <Footer /> */}
     </div>
   )
