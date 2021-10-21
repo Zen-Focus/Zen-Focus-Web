@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Icon } from '@iconify/react'
 
 const Options = () => {
-  const [rain, setRain] = useState()
-  const [music, setMusic] = useState()
+  const [sounds, setSounds] = useState([])
+  const [selectedSounds, setSelectedSounds] = useState([])
+  const [isMuted, setIsMuted] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
 
   useEffect(() => {
@@ -15,33 +16,33 @@ const Options = () => {
     music.type = 'audio/mpeg'
     music.loop = true
     
-    setRain(rainSound)
-    setMusic(music)
+    setSounds([
+      ["rain", rainSound],
+      ["music", music]
+    ])
   }, [])
 
+  const muteToggle = () => {
+    document.getElementById('mute').classList.toggle("active")
+    selectedSounds.forEach((id) => togglePlay(id))
+    setIsMuted(!isMuted)
+  }
+
+  const togglePlay = (id) => {
+    let audio = sounds.filter(([soundId]) => soundId === id)[0][1]
+    let classList = document.getElementById(id).classList
+    let isPlaying = classList.contains("active")
+
+    isPlaying ? audio.pause() : audio.play()
+    classList.toggle("active")
+  }
+
   const playSound = (id) => {
-    let audio
-
-    switch(id) {
-      case 'music':
-        audio = music
-        break
-      case 'rain':
-        audio = rain
-        break
-      default:
-        break
-    }
-
-    let classes = document.getElementById(id).classList
-    let isPlaying = classes.contains("active")
-
-    if(isPlaying){
-      audio.pause()
-      classes.remove("active")
-    } else{
-      audio.play()
-      classes.add("active")
+    if(!isMuted){
+      togglePlay(id)
+      selectedSounds.includes(id) 
+        ? setSelectedSounds(selectedSounds.filter((sound) => sound !== id)) 
+        : setSelectedSounds([...selectedSounds, id])
     }
   }
 
@@ -49,7 +50,7 @@ const Options = () => {
     <div id="options">
       <Icon id="sounds" className="icon" icon="fluent:headphones-sound-wave-20-filled" height={30} onClick={() => setShowMenu(!showMenu)}/>
       <div id="soundsContainer" style={{ "visibility": showMenu ? "visible" : "hidden" }} >
-        <Icon id="mute" className="sounds icon" icon="carbon:volume-mute" height={20} />
+        <Icon id="mute" className="sounds icon" icon="carbon:volume-mute" height={20} onClick={() => muteToggle()}/>
         <Icon id="music" className="sounds icon" icon="carbon:music" height={20} onClick={() => playSound('music')}/>
         <Icon id="rain" className="sounds icon" icon="carbon:rain" height={20} onClick={() => playSound('rain')}/>
       </div>
