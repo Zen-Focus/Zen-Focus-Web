@@ -1,17 +1,46 @@
-import React, { useState } from 'react'
-import './timer.css'
+import React, { useState, useEffect } from 'react'
 import { Icon } from '@iconify/react'
 
-const Timer = () => {
+import './timer.css'
+
+const Countdown = ({minutes}) => {
+  const [timer, setTimer] = useState(null)
+  const [time, setTime] = useState(minutes*60)
   const [isPaused, setIsPaused] = useState(true)
   const RADIUS = 120
 
-  const handleClick = () => setIsPaused(!isPaused)
+  const countDown = () => {
+    setTime(time => time-1)
+  }
+
+  const startTimer = () => {
+    setTimer(setInterval(countDown, 1000))
+  }
+
+  const stopTimer = () => {
+    clearInterval(timer)
+  }
+
+  const handleClick = () => {
+    isPaused ? startTimer() : stopTimer()
+    setIsPaused(!isPaused)
+  }
+
+  const showTime = () => {
+    let minutes = Math.floor(time/60)
+    let seconds = time%60
+
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+  }
+
+  useEffect(() => {
+    if(time <= 0){stopTimer()}
+  }, [time]) //eslint-disable-line
 
   return(
     <div id="timer">
       <div className="widget">
-        <div id="text">15:00</div>
+        <div id="text">{showTime()}</div>
         { isPaused
           ? <Icon id="start" className="icon timer" icon="fa-solid:play" height={21} onClick={handleClick} />
           : <Icon id="pause" className="icon timer" icon="carbon:pause-filled" height={37} onClick={handleClick} />
@@ -25,4 +54,4 @@ const Timer = () => {
   )
 }
 
-export default Timer
+export default Countdown

@@ -13,7 +13,7 @@ function App() {
       <Navbar openSettings={() => setOpenSettings(!openSettings)} hideIcons={openSettings} />
       { openSettings
         ? <SettingsMenu />
-        : <Timer />
+        : <Timer minutes={0.2} />
       }
       {/* <Footer /> */}
     </div>
