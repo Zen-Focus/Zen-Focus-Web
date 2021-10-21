@@ -8,19 +8,21 @@ const Options = () => {
   const [showMenu, setShowMenu] = useState(false)
 
   useEffect(() => {
-    let rainSound = new Audio('https://github.com/Schlenges/uploads/blob/main/rain.wav?raw=true')
-    rainSound.type = 'audio/wav'
-    rainSound.loop = true
-
-    let music = new Audio('https://www.gstatic.com/semantris/arcade_music.mp3')
-    music.type = 'audio/mpeg'
-    music.loop = true
+    let rainSound = createAudio('https://github.com/Schlenges/uploads/blob/main/rain.wav?raw=true', 'audio/wav')
+    let music = createAudio('https://www.gstatic.com/semantris/arcade_music.mp3', 'audio/mpeg')
     
     setSounds([
       ["rain", rainSound],
       ["music", music]
     ])
   }, [])
+
+  const createAudio = (source, type) => {
+    let audio = new Audio(source)
+    audio.type = type
+    audio.loop = true
+    return audio
+  }
 
   const muteToggle = () => {
     document.getElementById('mute').classList.toggle("active")
