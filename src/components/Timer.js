@@ -3,7 +3,8 @@ import { Icon } from '@iconify/react'
 
 import './timer.css'
 
-const Countdown = ({minutes, hidden}) => {
+const Countdown = ({hidden}) => {
+  const [minutes, setMinutes] = useState(localStorage.getItem('zenIntervalLength') || 25)
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState(minutes*60)
   const [isPaused, setIsPaused] = useState(true)

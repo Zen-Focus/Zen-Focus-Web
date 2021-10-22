@@ -4,8 +4,7 @@ import Options from './Options'
 
 import './navbar.css'
 
-const Navbar = ({openSettings, hideIcons}) => {
-  
+const Navbar = ({openSettings, hideIcons}) => {  
   return(
     <div id="navbar">
       { hideIcons

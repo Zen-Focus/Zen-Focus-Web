@@ -15,7 +15,7 @@ function App() {
         ? <SettingsMenu />
         : null
       }
-      <Timer minutes={0.2} hidden={showSettings} />
+      <Timer hidden={showSettings} />
       {/* <Footer /> */}
     </div>
   )

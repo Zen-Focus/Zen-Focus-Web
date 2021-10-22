@@ -16,3 +16,31 @@
   position: absolute;
   right: 0;
 }
+
+.valueInput{
+  width: 50px;
+  background: inherit;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  text-align: right;
+  border-radius: 3px;
+  padding: 0;
+  padding-right: 2px;
+}
+
+input:focus, input:focus-visible{
+  outline: 1px solid #E0E0E1;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
