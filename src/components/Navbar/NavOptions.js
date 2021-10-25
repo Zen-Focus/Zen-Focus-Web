@@ -1,8 +1,8 @@
 import React from 'react'
-import Soundscapes from './Soundscapes'
+import Soundscapes from '../Soundscapes/Soundscapes'
 import { Icon } from '@iconify/react'
 
-const Options = ({setReset}) => {
+const NavOptions = ({setReset}) => {
 
   const reset = () => {
     setReset(true)
@@ -17,4 +17,4 @@ const Options = ({setReset}) => {
   )
 }
 
-export default Options
+export default NavOptions

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './App.css'
-import Navbar from './components/Navbar'
-import Timer from './components/Timer'
-import SettingsMenu from './components/SettingsMenu'
+import Navbar from './components/Navbar/Navbar'
+import Timer from './components/Timer/Timer'
+import SettingsMenu from './components/SettingsMenu/SettingsMenu'
 /* import Footer from './components/Footer' */
 
 function App() {

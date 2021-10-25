@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon } from '@iconify/react'
-import Options from './Options'
+import Options from './NavOptions'
 
 import './navbar.css'
 

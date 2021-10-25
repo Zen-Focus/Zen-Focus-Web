@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Icon } from '@iconify/react'
+import Countdown from './Countdown/Countdown'
+import Progressbar from './Progressbar/Progrssbar'
 
 import './timer.css'
 
-const Countdown = ({hidden, reset, setReset}) => {
+const Timer = ({hidden, reset, setReset}) => {
   const [minutes, setMinutes] = useState(localStorage.getItem('zenIntervalLength') || 25)
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState(minutes*60)
   const [isPaused, setIsPaused] = useState(true)
-  const RADIUS = 120
-
+  
   const countDown = () => {
     setTime(time => time-1)
   }
@@ -22,7 +22,7 @@ const Countdown = ({hidden, reset, setReset}) => {
     clearInterval(timer)
   }
 
-  const handleClick = () => {
+  const startStop = () => {
     isPaused ? startTimer() : stopTimer()
     setIsPaused(!isPaused)
   }
@@ -51,18 +51,11 @@ const Countdown = ({hidden, reset, setReset}) => {
   return(
     <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
-        <div id="text">{showTime()}</div>
-        { isPaused
-          ? <Icon id="start" className="icon timer" icon="fa-solid:play" height={21} onClick={handleClick} />
-          : <Icon id="pause" className="icon timer" icon="carbon:pause-filled" height={37} onClick={handleClick} />
-        }
-        <svg id="svg" width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <circle id="barContainer" r={RADIUS} cx="100" cy="100" fill="transparent" strokeDasharray={2*Math.PI*RADIUS} strokeDashoffset="0"></circle>
-          <circle id="bar" r={RADIUS} cx="100" cy="100" fill="transparent" strokeDasharray={2*Math.PI*RADIUS} strokeDashoffset="0"></circle>
-        </svg>
+        <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} />
+        <Progressbar />
       </div>
     </div>
   )
 }
 
-export default Countdown
+export default Timer
