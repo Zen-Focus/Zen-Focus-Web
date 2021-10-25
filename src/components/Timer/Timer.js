@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import Countdown from './Countdown/Countdown'
 import Progressbar from './Progressbar/Progrssbar'
+import { Icon } from '@iconify/react'
 
 import './timer.css'
 
-const Timer = ({hidden, reset, setReset}) => {
+const BreakOptions = ({setShowBreakTimer}) => {
+  return(
+    <div id="breakOptions">
+      <Icon id="meditationIcon" className="icon" icon="mdi:meditation" height="70" />
+      <span style={{ fontSize: "1.5em" }}>or</span>
+      <Icon id="clockIcon" className="icon" icon="bi:clock-history" height="45" onClick={() => setShowBreakTimer(true)} />
+    </div>
+  )
+}
+
+const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
   const [minutes, setMinutes] = useState(localStorage.getItem('zenIntervalLength') || 25)
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState(minutes*60)
   const [isPaused, setIsPaused] = useState(true)
+  const [isBreak, setIsBreak] = useState(false)
+  const [showBreakTimer, setShowBreakTimer] = useState(true)
   
   const countDown = () => {
     setTime(time => time-1)
@@ -34,24 +47,51 @@ const Timer = ({hidden, reset, setReset}) => {
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
   }
 
+  // Timer
   useEffect(() => {
-    if(time <= 0){stopTimer()}
+    if(time <= 0){
+      stopTimer()
+      setTimeout(() => {
+        setIsPaused(true)
+        setIsBreak(!isBreak)
+        setShowBreakTimer(false)
+      }, 1000)
+    }
   }, [time]) //eslint-disable-line
+
+  useEffect(() => {
+    if(isBreak === false){
+      setIntervalCount(intervalCount => intervalCount + 1)
+    }
+  }, [isBreak]) //eslint-disable-line
 
   useEffect(() => {
     if(reset){
       stopTimer()
-      setMinutes(localStorage.getItem('zenIntervalLength'))
-      setTime(localStorage.getItem('zenIntervalLength')*60)
+      setTime(minutes*60)
       setIsPaused(true)
       setReset(false)
     }
   }, [reset]) //eslint-disable-line
 
+  useEffect(() => {
+    if(isBreak){
+      let breakTime = intervalCount < 4 
+        ? localStorage.getItem('zenShortBreak') 
+        : localStorage.getItem('zenLongBreak')
+
+      setMinutes(breakTime)
+      setTime(breakTime*60)
+    }
+  }, [intervalCount, isBreak])
+
   return(
     <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
-        <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} />
+        {!showBreakTimer
+          ? <BreakOptions setShowBreakTimer={setShowBreakTimer} />
+          : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} />
+        }
         <Progressbar />
       </div>
     </div>
