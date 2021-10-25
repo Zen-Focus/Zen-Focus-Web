@@ -51,6 +51,7 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
   useEffect(() => {
     if(time <= 0){
       stopTimer()
+      
       setTimeout(() => {
         setIsPaused(true)
         setIsBreak(!isBreak)
@@ -71,26 +72,39 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
       setTime(minutes*60)
       setIsPaused(true)
       setReset(false)
+      if(isBreak){
+        startTimer()
+      }
     }
   }, [reset]) //eslint-disable-line
 
   useEffect(() => {
+    let timerInterval
+
     if(isBreak){
-      let breakTime = intervalCount < 4 
+      timerInterval = intervalCount < 4 
         ? localStorage.getItem('zenShortBreak') 
         : localStorage.getItem('zenLongBreak')
-
-      setMinutes(breakTime)
-      setTime(breakTime*60)
+    } else{
+      timerInterval = localStorage.getItem('zenIntervalLength')
     }
+
+    setMinutes(timerInterval)
+    setTime(timerInterval*60)
   }, [intervalCount, isBreak])
+
+  useEffect(() => {
+    if(showBreakTimer && isBreak) {
+      startTimer()
+    }
+  }, [showBreakTimer]) //eslint-disable-line
 
   return(
     <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
-        {!showBreakTimer
+        {!showBreakTimer && isBreak
           ? <BreakOptions setShowBreakTimer={setShowBreakTimer} />
-          : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} />
+          : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} isBreak={isBreak} />
         }
         <Progressbar />
       </div>
