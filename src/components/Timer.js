@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react'
 
 import './timer.css'
 
-const Countdown = ({hidden}) => {
+const Countdown = ({hidden, reset, setReset}) => {
   const [minutes, setMinutes] = useState(localStorage.getItem('zenIntervalLength') || 25)
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState(minutes*60)
@@ -37,6 +37,16 @@ const Countdown = ({hidden}) => {
   useEffect(() => {
     if(time <= 0){stopTimer()}
   }, [time]) //eslint-disable-line
+
+  useEffect(() => {
+    if(reset){
+      stopTimer()
+      setMinutes(localStorage.getItem('zenIntervalLength'))
+      setTime(localStorage.getItem('zenIntervalLength')*60)
+      setIsPaused(true)
+      setReset(false)
+    }
+  }, [reset]) //eslint-disable-line
 
   return(
     <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>

@@ -7,15 +7,16 @@ import SettingsMenu from './components/SettingsMenu'
 
 function App() {
   const [showSettings, setShowSettings] = useState(false)
+  const [reset, setReset] = useState(false)
 
   return (
     <div id="app">
-      <Navbar openSettings={() => setShowSettings(!showSettings)} hideIcons={showSettings} />
+      <Navbar openSettings={() => setShowSettings(!showSettings)} hideIcons={showSettings} setReset={setReset} />
       { showSettings
         ? <SettingsMenu />
         : null
       }
-      <Timer hidden={showSettings} />
+      <Timer hidden={showSettings} reset={reset} setReset={setReset} />
       {/* <Footer /> */}
     </div>
   )
