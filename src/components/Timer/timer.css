@@ -49,3 +49,26 @@
   left: 83px;
   top: 70px;
 }
+
+#coffee{
+  left: 83px;
+  top: 70px;
+}
+
+#breakOptions{
+  text-align: center;
+  margin-bottom: -69.5%;
+  margin-top: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#clockIcon{
+  margin-left: 20px;
+}
+
+#meditationIcon{
+  margin-right: 9px;
+  margin-left: -9px;
+}
