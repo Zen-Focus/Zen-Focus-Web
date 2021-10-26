@@ -20,8 +20,9 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState(minutes*60)
   const [isPaused, setIsPaused] = useState(true)
-  const [isBreak, setIsBreak] = useState(false)
+  const [isBreak, setIsBreak] = useState(false) // TODO refactor to current interval name?
   const [showBreakTimer, setShowBreakTimer] = useState(true)
+  const [currentInterval, setCurrentInterval] = useState('zenIntervalLength')
   
   const countDown = () => {
     setTime(time => time-1)
@@ -68,8 +69,10 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
 
   useEffect(() => {
     if(reset){
+      let intervalTime = localStorage.getItem(currentInterval)
       stopTimer()
-      setTime(minutes*60)
+      setMinutes(intervalTime)
+      setTime(intervalTime*60)
       setIsPaused(true)
       setReset(false)
       if(isBreak){
@@ -79,19 +82,24 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
   }, [reset]) //eslint-disable-line
 
   useEffect(() => {
-    let timerInterval
+    let interval
 
     if(isBreak){
-      timerInterval = intervalCount < 4 
-        ? localStorage.getItem('zenShortBreak') 
-        : localStorage.getItem('zenLongBreak')
+      interval = intervalCount < 4 
+        ? 'zenShortBreak'
+        : 'zenLongBreak'
     } else{
-      timerInterval = localStorage.getItem('zenIntervalLength')
+      interval = 'zenIntervalLength'
     }
 
-    setMinutes(timerInterval)
-    setTime(timerInterval*60)
+    setCurrentInterval(interval)
   }, [intervalCount, isBreak])
+
+  useEffect(() => {
+    let intervalTime = localStorage.getItem(currentInterval)
+    setMinutes(intervalTime)
+    setTime(intervalTime*60)
+  }, [currentInterval])
 
   useEffect(() => {
     if(showBreakTimer && isBreak) {
