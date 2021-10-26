@@ -2,7 +2,7 @@ import React from 'react'
 import Soundscapes from '../Soundscapes/Soundscapes'
 import { Icon } from '@iconify/react'
 
-const NavOptions = ({setReset, intervalCount}) => {
+const NavOptions = ({setReset, intervalCount, sessionCount}) => {
 
   const reset = () => {
     setReset(true)
@@ -13,7 +13,8 @@ const NavOptions = ({setReset, intervalCount}) => {
       <Soundscapes />
       <Icon id="meditation" className="icon" icon="mdi:meditation" height={35} />
       <Icon id="reset" className="icon" icon="ei:undo" height={35} onClick={reset} />
-      <p>Interval: {intervalCount}</p>
+      <p style={{ marginRight: "10px" }}>Interval: {intervalCount}</p>
+      <p>Session: {sessionCount}</p>
     </div>
   )
 }
