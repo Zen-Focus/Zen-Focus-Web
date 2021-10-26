@@ -16,7 +16,6 @@ const BreakOptions = ({setShowBreakTimer}) => {
 }
 
 const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
-  //const [minutes, setMinutes] = useState(localStorage.getItem('zenIntervalLength') || 25)
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25)*60)
   const [isPaused, setIsPaused] = useState(true)
@@ -49,12 +48,14 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
   }
 
   useEffect(() => {
-    localStorage.setItem('zenIntervalLength', 25)
-    localStorage.setItem('zenShortBreak', 5)
-    localStorage.setItem('zenLongBreak', 20)
-    localStorage.setItem('zenInhalation', 4)
-    localStorage.setItem('zenExhalation', 4)
-    localStorage.setItem('zenHold', 4)
+    if(!localStorage.getItem('zenIntervalLength')){
+      localStorage.setItem('zenIntervalLength', 25)
+      localStorage.setItem('zenShortBreak', 5)
+      localStorage.setItem('zenLongBreak', 20)
+      localStorage.setItem('zenInhalation', 4)
+      localStorage.setItem('zenExhalation', 4)
+      localStorage.setItem('zenHold', 4)
+    }
   }, [])
 
   // Timer
@@ -62,6 +63,10 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
     if(time <= 0){
       stopTimer()
       
+      let audio = new Audio('https://github.com/Schlenges/uploads/blob/main/parrot.m4a?raw=true')
+      audio.type = 'audio/wav'
+      audio.play()
+
       setTimeout(() => {
         setIsPaused(true)
         setIsBreak(!isBreak)
@@ -80,7 +85,6 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
     if(reset){
       let intervalTime = localStorage.getItem(currentInterval)
       stopTimer()
-      //setMinutes(intervalTime)
       setTime(intervalTime*60)
       setIsPaused(true)
       setReset(false)
@@ -106,7 +110,6 @@ const Timer = ({hidden, reset, setReset, setIntervalCount, intervalCount}) => {
 
   useEffect(() => {
     let intervalTime = localStorage.getItem(currentInterval) || 25
-    //setMinutes(intervalTime)
     setTime(intervalTime*60)
   }, [currentInterval])
 

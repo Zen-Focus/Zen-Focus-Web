@@ -11,12 +11,12 @@ const Option = ({label, unit, setState, value}) => (
 )
 
 const SettingsMenu = () => {
-  const [intervalLength, setIntervalLength] = useState(localStorage.getItem('zenIntervalLength') || 25)
-  const [shortBreak, setShortBreak] = useState(localStorage.getItem('zenShortBreak') || 5)
-  const [longBreak, setLongBreak] = useState(localStorage.getItem('zenLongBreak') || 20)
-  const [inhalation, setInhalation] = useState(localStorage.getItem('zenInhalation') || 4)
-  const [exhalation, setExhalation] = useState(localStorage.getItem('zenExhalation') || 4)
-  const [hold, setHold] = useState(localStorage.getItem('zenHold') || 4)
+  const [intervalLength, setIntervalLength] = useState(localStorage.getItem('zenIntervalLength'))
+  const [shortBreak, setShortBreak] = useState(localStorage.getItem('zenShortBreak'))
+  const [longBreak, setLongBreak] = useState(localStorage.getItem('zenLongBreak'))
+  const [inhalation, setInhalation] = useState(localStorage.getItem('zenInhalation'))
+  const [exhalation, setExhalation] = useState(localStorage.getItem('zenExhalation'))
+  const [hold, setHold] = useState(localStorage.getItem('zenHold'))
 
   useEffect(() => {
     localStorage.setItem('zenIntervalLength', intervalLength)
