@@ -10,6 +10,7 @@
 
 # production
 /build
+diagram.drawio
 
 # misc
 .DS_Store
