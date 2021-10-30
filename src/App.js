@@ -11,6 +11,8 @@ function App() {
   const [intervalCount, setIntervalCount] = useState(0)
   const [sessionCount, setSessionCount] = useState(1)
 
+  const triggerReset = () => setReset(reset => !reset)
+
   useEffect(() => {
     if(intervalCount >= 5){
       setIntervalCount(1)
@@ -23,7 +25,7 @@ function App() {
       <Navbar 
         openSettings={() => setShowSettings(!showSettings)} 
         hideIcons={showSettings} 
-        setReset={setReset} 
+        triggerReset={triggerReset} 
         intervalCount={intervalCount} 
         sessionCount={sessionCount}
       />
@@ -31,7 +33,7 @@ function App() {
         ? <SettingsMenu />
         : null
       }
-      <Timer hidden={showSettings} reset={reset} setReset={setReset} setIntervalCount={setIntervalCount} intervalCount={intervalCount} />
+      <Timer hidden={showSettings} reset={reset} setIntervalCount={setIntervalCount} intervalCount={intervalCount} />
       {/* <Footer /> */}
     </div>
   )
