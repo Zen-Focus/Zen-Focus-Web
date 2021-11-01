@@ -1,13 +1,16 @@
 body{
+  margin: 0px;
   background: #1F1B2E;
   color: #E0E0E1;
   font-family: 'Roboto', sans-serif;
 }
 
 #app{
-  /* width: 40%; */
+  display: flex;
+  flex-direction: column;
+  height: 100vH;
   width: 90%;
-  margin: 20px auto;
+  margin: 0 auto;
 }
 
 .icon{

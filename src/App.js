@@ -3,7 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import Timer from './components/Timer/Timer'
 import SettingsMenu from './components/SettingsMenu/SettingsMenu'
-/* import Footer from './components/Footer' */
+import Footer from './components/Footer/Footer'
 
 function App() {
   const [showSettings, setShowSettings] = useState(false)
@@ -34,7 +34,7 @@ function App() {
         : null
       }
       <Timer hidden={showSettings} reset={reset} setIntervalCount={setIntervalCount} intervalCount={intervalCount} />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

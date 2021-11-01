@@ -7,7 +7,8 @@ const Footer = () => {
 
   return(
     <div id="footer">
-      <Icon id="reset" className="icon" icon="ei:undo" color="#ffffff" height={35} />
+      {/* <Icon id="reset" className="icon" icon="ei:undo" color="#ffffff" height={35} /> */}
+      <Icon id="skipBtn" className="icon" icon="bi:skip-end" height="30" />
     </div>
   )
 }

@@ -1,6 +1,13 @@
 #timer{
-  width: 40%;
-  margin: 200px auto;
+  /* width: 40%;
+  margin: 200px auto; */
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 200px;
+  height: 200px;
+  border: 1px solid #1F1B2E;
+  padding: 33px;
+  position: relative;
 }
 
 #svg{
@@ -24,8 +31,9 @@
 .widget{
   position: relative;
   width: max-content;
-  height: max-content;
-  margin: 40% auto;
+  /* height: max-content;
+  margin: 0 auto;
+  margin-top: 40%; */
 }
 
 #text{
