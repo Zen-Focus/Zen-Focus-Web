@@ -78,11 +78,19 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
   }, [time]) //eslint-disable-line
 
   useEffect(() => {
+    let interval
+
     if(isBreak === false){
       setIntervalCount(intervalCount => intervalCount + 1)
+      interval = 'zenIntervalLength'
     } else{
       setShowBreakTimer(false) 
+      interval = intervalCount < 4 
+        ? 'zenShortBreak'
+        : 'zenLongBreak'
     }
+
+    setCurrentInterval(interval)
   }, [isBreak]) //eslint-disable-line
 
   useEffect(() => {
@@ -94,20 +102,6 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
       startTimer()
     }
   }, [reset]) //eslint-disable-line
-
-  useEffect(() => {
-    let interval
-
-    if(isBreak){
-      interval = intervalCount < 4 
-        ? 'zenShortBreak'
-        : 'zenLongBreak'
-    } else{
-      interval = 'zenIntervalLength'
-    }
-
-    setCurrentInterval(interval)
-  }, [intervalCount, isBreak])
 
   useEffect(() => {
     if(skip){  
