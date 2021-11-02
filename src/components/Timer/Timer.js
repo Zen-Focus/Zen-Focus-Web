@@ -15,13 +15,16 @@ const BreakOptions = ({setShowBreakTimer}) => {
   )
 }
 
-const Timer = ({hidden, reset, setIntervalCount, intervalCount}) => {
+const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) => {
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25)*60)
   const [isPaused, setIsPaused] = useState(true)
   const [isBreak, setIsBreak] = useState(false)
   const [showBreakTimer, setShowBreakTimer] = useState(true)
   const [currentInterval, setCurrentInterval] = useState('zenIntervalLength')
+  const [sound, setSound] = useState()
+
+  console.log('current: ', currentInterval, 'isBreak: ', isBreak, 'time: ', time)
   
   const countDown = () => {
     setTime(time => time-1)
@@ -56,20 +59,20 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount}) => {
       localStorage.setItem('zenExhalation', 4)
       localStorage.setItem('zenHold', 4)
     }
+
+    let audio = new Audio('https://github.com/Schlenges/uploads/blob/main/parrot.m4a?raw=true')
+    audio.type = 'audio/wav'
+    setSound(audio)
   }, [])
 
   useEffect(() => {
     if(time <= 0){
       stopTimer()
-      
-      let audio = new Audio('https://github.com/Schlenges/uploads/blob/main/parrot.m4a?raw=true')
-      audio.type = 'audio/wav'
-      audio.play()
+      sound.play()
 
       setTimeout(() => {
         setIsPaused(true)
         setIsBreak(!isBreak)
-        setShowBreakTimer(false)
       }, 1000)
     }
   }, [time]) //eslint-disable-line
@@ -77,6 +80,8 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount}) => {
   useEffect(() => {
     if(isBreak === false){
       setIntervalCount(intervalCount => intervalCount + 1)
+    } else{
+      setShowBreakTimer(false) 
     }
   }, [isBreak]) //eslint-disable-line
 
@@ -103,6 +108,19 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount}) => {
 
     setCurrentInterval(interval)
   }, [intervalCount, isBreak])
+
+  useEffect(() => {
+    if(skip){  
+      stopTimer()
+      setIsPaused(true)
+
+      currentInterval !== 'zenIntervalLength'
+        ? setIsBreak(false)
+        : setIsBreak(true)
+
+      setSkip(false)
+    }
+  }, [skip]) //eslint-disable-line
 
   useEffect(() => {
     let intervalTime = localStorage.getItem(currentInterval) || 25

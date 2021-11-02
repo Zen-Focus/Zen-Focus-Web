@@ -8,10 +8,14 @@ import Footer from './components/Footer/Footer'
 function App() {
   const [showSettings, setShowSettings] = useState(false)
   const [reset, setReset] = useState(false)
+  const [skip, setSkip] = useState()
   const [intervalCount, setIntervalCount] = useState(0)
   const [sessionCount, setSessionCount] = useState(1)
 
   const triggerReset = () => setReset(reset => !reset)
+  const triggerSkip = () => {
+    setSkip(true)
+  }
 
   useEffect(() => {
     if(intervalCount >= 5){
@@ -33,8 +37,8 @@ function App() {
         ? <SettingsMenu />
         : null
       }
-      <Timer hidden={showSettings} reset={reset} setIntervalCount={setIntervalCount} intervalCount={intervalCount} />
-      <Footer />
+      <Timer hidden={showSettings} reset={reset} setIntervalCount={setIntervalCount} intervalCount={intervalCount} skip={skip} setSkip={setSkip}/>
+      <Footer triggerSkip={triggerSkip} />
     </div>
   )
 }

@@ -3,12 +3,11 @@ import { Icon } from '@iconify/react'
 
 import './footer.css'
 
-const Footer = () => {
+const Footer = ({triggerSkip}) => {
 
   return(
     <div id="footer">
-      {/* <Icon id="reset" className="icon" icon="ei:undo" color="#ffffff" height={35} /> */}
-      <Icon id="skipBtn" className="icon" icon="bi:skip-end" height="30" />
+      <Icon id="skipBtn" className="icon" icon="bi:skip-end" height="30" onClick={() => triggerSkip()} />
     </div>
   )
 }
