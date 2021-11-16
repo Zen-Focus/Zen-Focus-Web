@@ -23,6 +23,7 @@ const Soundscapes = () => {
     let audio = new Audio(source)
     audio.type = type
     audio.loop = true
+    audio.volume = 0.5
     return audio
   }
 
@@ -50,13 +51,25 @@ const Soundscapes = () => {
     }
   }
 
+  const controleVolume = (event, id) => {
+    let [sound] = sounds.filter(([soundId]) => soundId === id)
+    sound[1].volume = event.target.value / 10
+    setSounds([...sounds.filter(([soundId]) => soundId !== id),  sound])
+  }
+
   return(
     <div>
       <Icon id="sounds" className="icon" icon="fluent:headphones-sound-wave-20-filled" height={30} onClick={() => setShowSounds(!showSounds)}/>
       <div id="soundsContainer" style={{ "visibility": showSounds ? "visible" : "hidden" }} >
         <Icon id="mute" className="sounds icon" icon="carbon:volume-mute" height={20} onClick={() => muteToggle()}/>
-        <Icon id="music" className="sounds icon" icon="carbon:music" height={20} onClick={() => playSound('music')}/>
-        <Icon id="rain" className="sounds icon" icon="carbon:rain" height={20} onClick={() => playSound('rain')}/>
+        <span className="sound-item">
+          <Icon id="music" className="sounds icon" icon="carbon:music" height={20} onClick={() => playSound('music')}/>
+          <input min="1" max="10" type="range" defaultValue="5" onChange={(event) => controleVolume(event, 'music')}/>
+        </span>
+        <span className="sound-item">
+          <Icon id="rain" className="sounds icon" icon="carbon:rain" height={20} onClick={() => playSound('rain')}/>
+          <input min="1" max="10" type="range" defaultValue="5" onChange={(event) => controleVolume(event, 'rain')}/>
+        </span>
       </div>
     </div>
   )

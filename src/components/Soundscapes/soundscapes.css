@@ -11,8 +11,7 @@
 }
 
 .sounds{
-  margin: 0 auto;
-  margin-bottom: 5px;
+  margin-left: 5px;
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -22,4 +21,64 @@
 
 #mute{
   margin-bottom: 12px;
+}
+
+.sound-item{
+  display: flex;
+  padding: 0;
+  margin-bottom: 5px;
+  width: max-content;
+  align-items: center;
+}
+
+/* volume slider */
+input[type="range"] {
+  -webkit-appearance: none !important;
+  margin-left: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  height: 3px;
+  width: 50px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+input[type="range"]:focus, input[type="range"]:focus-visible {
+  outline: none;
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+input[type="range"]::-moz-range-track {
+  border: none;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  background: rgb(175, 174, 174);
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: rgb(255, 255, 255);
+  height: 8px;
+  width: 8px;
+  border-radius: 100%;
+}
+
+input[type="range"]::-ms-thumb {
+  -webkit-appearance: none !important;
+  background: rgb(255, 255, 255);
+  height: 8px;
+  width: 8px;
+  border-radius: 100%;
 }
