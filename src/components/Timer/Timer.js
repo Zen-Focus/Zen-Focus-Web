@@ -23,8 +23,6 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
   const [showBreakTimer, setShowBreakTimer] = useState(true)
   const [currentInterval, setCurrentInterval] = useState('zenIntervalLength')
   const [sound, setSound] = useState()
-
-  console.log('current: ', currentInterval, 'isBreak: ', isBreak, 'time: ', time)
   
   const countDown = () => {
     setTime(time => time-1)
@@ -60,8 +58,9 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
       localStorage.setItem('zenHold', 4)
     }
 
-    let audio = new Audio('https://github.com/Schlenges/uploads/blob/main/parrot.m4a?raw=true')
-    audio.type = 'audio/wav'
+    let audio = new Audio('https://github.com/Schlenges/uploads/blob/main/zapsplat_multimedia_notification_alert_prompt_bright_chime_ping_001_42408.mp3?raw=true')
+    audio.type = 'audio/mpeg'
+    audio.volume = 0.2
     setSound(audio)
   }, [])
 
