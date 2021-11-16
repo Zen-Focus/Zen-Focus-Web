@@ -93,6 +93,10 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
   }, [isBreak]) //eslint-disable-line
 
   useEffect(() => {
+    if(!showBreakTimer && isBreak){
+      return
+    }
+    
     let intervalTime = localStorage.getItem(currentInterval)
     stopTimer()
     setTime(intervalTime*60)
