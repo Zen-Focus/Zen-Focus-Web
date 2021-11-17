@@ -3,6 +3,8 @@ import { Icon } from '@iconify/react'
 
 import './soundscapes.css'
 
+import soundData from '../../soundData.js'
+
 const Soundscapes = () => {
   const [showSounds, setShowSounds] = useState(false)
   const [sounds, setSounds] = useState([])
@@ -10,13 +12,8 @@ const Soundscapes = () => {
   const [isMuted, setIsMuted] = useState(false)
 
   useEffect(() => {
-    let rainSound = createAudio('https://github.com/Schlenges/uploads/blob/main/rain.wav?raw=true', 'audio/wav')
-    let music = createAudio('https://www.gstatic.com/semantris/arcade_music.mp3', 'audio/mpeg')
-    
-    setSounds([
-      ["rain", rainSound],
-      ["music", music]
-    ])
+    let sounds = soundData.map(sound => ({...sound, audio: createAudio(sound.src, sound.type)}))
+    setSounds(sounds)
   }, [])
 
   const createAudio = (source, type) => {
@@ -34,7 +31,8 @@ const Soundscapes = () => {
   }
 
   const togglePlay = (id) => {
-    let audio = sounds.filter(([soundId]) => soundId === id)[0][1]
+    let [sound] = sounds.filter(({id: soundId}) => soundId === id)
+    let audio = sound.audio
     let classList = document.getElementById(id).classList
     let isPlaying = classList.contains("active")
 
@@ -52,9 +50,9 @@ const Soundscapes = () => {
   }
 
   const controleVolume = (event, id) => {
-    let [sound] = sounds.filter(([soundId]) => soundId === id)
-    sound[1].volume = event.target.value / 10
-    setSounds([...sounds.filter(([soundId]) => soundId !== id),  sound])
+    let [sound] = sounds.filter(({id: soundId}) => soundId === id)
+    sound.audio.volume = event.target.value / 10
+    setSounds([...sounds.filter(({id: soundId}) => soundId !== id),  sound])
   }
 
   return(
