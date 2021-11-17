@@ -12,40 +12,65 @@ const Soundscapes = () => {
   const [isMuted, setIsMuted] = useState(false)
 
   useEffect(() => {
-    Object.values(soundData).forEach(sound => sound['audio'] = createAudio(sound.src, sound.type))
+    Object.values(soundData).forEach(sound => sound['audio'] = createAudio(sound.id, sound.src, sound.type))
     setSounds(soundData)
-  }, [])
+  }, []) //eslint-disable-line
 
-  const createAudio = (source, type) => {
+  const createAudio = (id, source, type) => {
     let audio = new Audio(source)
     audio.type = type
     audio.loop = true
     audio.volume = 0.5
+    audio.addEventListener('playing', () => play(id))
+    audio.addEventListener('pause', () => pause(id))
     return audio
+  }
+
+  const play = (id) => {
+    document.getElementById(id).classList.add('active')
+    toggleSelect(id)
+  }
+
+  const pause = (id) => {
+    document.getElementById(id).classList.remove('active')
+    toggleSelect(id)
   }
 
   const muteToggle = () => {
     document.getElementById('mute').classList.toggle("active")
-    selectedSounds.forEach((id) => togglePlay(id))
+    selectedSounds.forEach((id) => toggleMute(id))
     setIsMuted(!isMuted)
+  }
+
+  const toggleMute = (id) => {
+    let [sound] = Object.values(sounds).filter(({id: soundId}) => soundId === id)
+    let audio = sound.audio
+
+    audio.muted = !audio.muted
+
+    document.getElementById(id).classList.toggle('active')
   }
 
   const togglePlay = (id) => {
     let [sound] = Object.values(sounds).filter(({id: soundId}) => soundId === id)
     let audio = sound.audio
-    let classList = document.getElementById(id).classList
-    let isPlaying = classList.contains("active")
 
-    isPlaying ? audio.pause() : audio.play()
-    classList.toggle("active")
+    audio.paused ? audio.play() : audio.pause()
   }
 
-  const playSound = (id) => {
+  const toggleSelect = (id) => {
+    if(!isMuted){
+      setSelectedSounds((selectedSounds) => 
+        selectedSounds.includes(id)
+          ? selectedSounds.filter((sound) => sound !== id)
+          : [...selectedSounds, id]
+      )
+    }
+  }
+
+  const toggleSound = (id) => {
     if(!isMuted){
       togglePlay(id)
-      selectedSounds.includes(id) 
-        ? setSelectedSounds(selectedSounds.filter((sound) => sound !== id)) 
-        : setSelectedSounds([...selectedSounds, id])
     }
   }
 
@@ -61,7 +86,7 @@ const Soundscapes = () => {
       <div id="soundsContainer" style={{ "visibility": showSounds ? "visible" : "hidden" }} >
         <Icon id="mute" className="sounds icon" icon="carbon:volume-mute" height={20} onClick={() => muteToggle()}/>
         {Object.values(sounds).map((sound) => 
-          <SoundOption key={sound.id} sound={sound} playSound={playSound} controleVolume={controleVolume} />
+          <SoundOption key={sound.id} sound={sound} toggleSound={toggleSound} controleVolume={controleVolume} />
         )}
       </div>
     </div>
