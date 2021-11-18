@@ -2,10 +2,10 @@ import React from 'react'
 import Soundscapes from '../Soundscapes/Soundscapes'
 import { Icon } from '@iconify/react'
 
-const NavOptions = ({triggerReset, intervalCount, sessionCount}) => {  
+const NavOptions = ({triggerReset, intervalCount, sessionCount, hideIcons}) => {  
   return(
-    <div id="options">
-      <Soundscapes />
+    <div id="options" style={{ visibility: hideIcons ? 'hidden' : 'visible' }}>
+      <Soundscapes hideIcons={hideIcons} />
       <Icon id="meditation" className="icon" icon="mdi:meditation" height={35} />
       <Icon id="reset" className="icon" icon="ei:undo" height={35} onClick={() => triggerReset()} />
       <p style={{ marginRight: "10px" }}>Interval: {intervalCount}</p>

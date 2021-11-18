@@ -5,7 +5,7 @@ import './soundscapes.css'
 
 import soundData from '../../soundData.js'
 
-const Soundscapes = () => {
+const Soundscapes = ({hideIcons}) => {
   const [showSounds, setShowSounds] = useState(false)
   const [sounds, setSounds] = useState({})
   const [selectedSounds, setSelectedSounds] = useState([])
@@ -15,6 +15,12 @@ const Soundscapes = () => {
     Object.values(soundData).forEach(sound => sound['audio'] = createAudio(sound.id, sound.src, sound.type))
     setSounds(soundData)
   }, []) //eslint-disable-line
+
+  useEffect(() => {
+    if(hideIcons){
+      setShowSounds(false)
+    }
+  }, [hideIcons])
 
   const createAudio = (id, source, type) => {
     let audio = new Audio(source)
