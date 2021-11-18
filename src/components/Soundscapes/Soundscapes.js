@@ -21,62 +21,52 @@ const Soundscapes = () => {
     audio.type = type
     audio.loop = true
     audio.volume = 0.5
-    audio.addEventListener('playing', () => play(id))
-    audio.addEventListener('pause', () => pause(id))
+    audio.onplaying = () => document.getElementById(id).classList.add('active')
+    audio.onpause = () => document.getElementById(id).classList.remove('active')
     return audio
-  }
-
-  const play = (id) => {
-    document.getElementById(id).classList.add('active')
-    toggleSelect(id)
-  }
-
-  const pause = (id) => {
-    document.getElementById(id).classList.remove('active')
-    toggleSelect(id)
   }
 
   const muteToggle = () => {
     document.getElementById('mute').classList.toggle("active")
-    selectedSounds.forEach((id) => toggleMute(id))
+    selectedSounds.forEach((id) => togglePlay(id))
     setIsMuted(!isMuted)
-  }
-
-  const toggleMute = (id) => {
-    let [sound] = Object.values(sounds).filter(({id: soundId}) => soundId === id)
-    let audio = sound.audio
-
-    audio.muted = !audio.muted
-
-    document.getElementById(id).classList.toggle('active')
-  }
-
-  const togglePlay = (id) => {
-    let [sound] = Object.values(sounds).filter(({id: soundId}) => soundId === id)
-    let audio = sound.audio
-
-    audio.paused ? audio.play() : audio.pause()
-  }
-
-  const toggleSelect = (id) => {
-    if(!isMuted){
-      setSelectedSounds((selectedSounds) => 
-        selectedSounds.includes(id)
-          ? selectedSounds.filter((sound) => sound !== id)
-          : [...selectedSounds, id]
-      )
-    }
   }
 
   const toggleSound = (id) => {
     if(!isMuted){
       togglePlay(id)
+      toggleSelect(id)
     }
   }
-
-  const controleVolume = (event, id) => {
+  
+  const togglePlay = (id) => {
     let [sound] = Object.values(sounds).filter(({id: soundId}) => soundId === id)
-    sound.audio.volume = event.target.value / 10
+    let audio = sound.audio
+    
+    audio.paused ? audio.play() : audio.pause()
+  }
+
+  const toggleSelect = (id) => {
+    setSelectedSounds((selectedSounds) => 
+      selectedSounds.includes(id)
+        ? selectedSounds.filter((sound) => sound !== id)
+        : [...selectedSounds, id]
+    )
+  }
+
+  const controlVolume = (event, id) => {
+    let [sound] = Object.values(sounds).filter(({id: soundId}) => soundId === id)
+    let value = Number(event.target.value)
+    sound.audio.volume = value / 10
+
+    if(value > 0 && sound.audio.paused){
+      toggleSound(id)
+    }
+
+    if(value === 0 && !sound.audio.paused){
+      toggleSound(id)
+    }
+
     setSounds(sounds)
   }
 
@@ -86,7 +76,7 @@ const Soundscapes = () => {
       <div id="soundsContainer" style={{ "visibility": showSounds ? "visible" : "hidden" }} >
         <Icon id="mute" className="sounds icon" icon="carbon:volume-mute" height={20} onClick={() => muteToggle()}/>
         {Object.values(sounds).map((sound) => 
-          <SoundOption key={sound.id} sound={sound} toggleSound={toggleSound} controleVolume={controleVolume} />
+          <SoundOption key={sound.id} sound={sound} toggleSound={toggleSound} controlVolume={controlVolume} />
         )}
       </div>
     </div>
