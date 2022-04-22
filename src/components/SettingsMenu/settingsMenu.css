@@ -29,6 +29,12 @@
   padding-right: 2px;
 }
 
+.menu-input-value {
+  width: 25px;
+  display: inline-block;
+  text-align: right;
+}
+
 input:focus, input:focus-visible{
   outline: 1px solid #E0E0E1;
 }
