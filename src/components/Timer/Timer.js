@@ -8,8 +8,9 @@ import './timer.css'
 const BreakOptions = ({setShowBreakTimer}) => {
   return(
     <div id="breakOptions">
-      <Icon id="meditationIcon" className="icon" icon="mdi:meditation" height="70" />
-      <span style={{ fontSize: "1.5em" }}>or</span>
+      {/* <Icon id="meditationIcon" className="icon" icon="mdi:meditation" height="70" /> */}
+      {/* <span style={{ fontSize: "1.5em" }}>or</span> */}
+      <p>Ready for a break?</p>
       <Icon id="clockIcon" className="icon" icon="bi:clock-history" height="45" onClick={() => setShowBreakTimer(true)} />
     </div>
   )
