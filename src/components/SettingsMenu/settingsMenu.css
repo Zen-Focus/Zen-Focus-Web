@@ -1,7 +1,9 @@
 #settingsMenu{
   width: 310px;
-  margin: 120px auto;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%,0%);
 }
 
 .heading{

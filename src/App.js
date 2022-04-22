@@ -38,7 +38,7 @@ function App() {
         : null
       }
       <Timer hidden={showSettings} reset={reset} setIntervalCount={setIntervalCount} intervalCount={intervalCount} skip={skip} setSkip={setSkip}/>
-      <Footer triggerSkip={triggerSkip} />
+      <Footer hidden={showSettings} triggerSkip={triggerSkip} />
     </div>
   )
 }
