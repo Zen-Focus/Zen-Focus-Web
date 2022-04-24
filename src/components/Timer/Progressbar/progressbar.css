@@ -1,0 +1,19 @@
+#svg {
+  transform: scaleX(-1) rotate(-90deg);
+  overflow: visible;
+  position: relative;
+  z-index: -1;
+}
+
+#svg circle {
+  stroke: #322C61;
+  stroke-width: 8;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+#svg #bar {
+  stroke: #5550FF;
+  filter: drop-shadow(0px 0px 10px #5550FF);
+  stroke-linecap: round;
+}

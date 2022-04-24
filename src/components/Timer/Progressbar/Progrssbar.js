@@ -1,4 +1,5 @@
 import React from 'react'
+import './progressbar.css'
 
 const Progressbar = () => {
   const RADIUS = 120
