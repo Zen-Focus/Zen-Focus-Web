@@ -6,7 +6,7 @@ const Option = ({label, unit, setState, value}) => (
     {label} 
     <span className="optionsValue">
     <input 
-        min="0" max="60" 
+        min="1" max="60" 
         type="range" 
         value={value}
         onChange={(e) => setState(e.target.value)}
