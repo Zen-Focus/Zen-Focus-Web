@@ -5,14 +5,14 @@ import { Icon } from '@iconify/react'
 
 import './timer.css'
 
-const BreakOptions = ({setShowBreakTimer}) => {
+const BreakOptions = ({startBreak}) => {
   return(
     <div id="breakOptions">
       {/* <Icon id="meditationIcon" className="icon" icon="mdi:meditation" height="70" />
       <span style={{ fontSize: "1.5em" }}>or</span>
       <Icon id="clockIcon" className="icon" icon="bi:clock-history" height="45" onClick={() => setShowBreakTimer(true)} /> */}
       <p id="break-text">Ready for a break?</p>
-      <Icon id="clockIcon" className="icon" icon="ci:check" height="45" onClick={() => setShowBreakTimer(true)} />
+      <Icon id="clockIcon" className="icon" icon="ci:check" height="45" onClick={() => startBreak()} />
     </div>
   )
 }
@@ -26,6 +26,11 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
   const [currentInterval, setCurrentInterval] = useState('zenIntervalLength')
   const [sound, setSound] = useState()
   
+  const startBreak = () => {
+    setShowBreakTimer(true)
+    setIsPaused(false)
+  }
+
   const countDown = () => {
     setTime(time => time-1)
   }
@@ -136,10 +141,15 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
     <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
         {!showBreakTimer && isBreak
-          ? <BreakOptions setShowBreakTimer={setShowBreakTimer} />
+          ? <BreakOptions startBreak={startBreak} />
           : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} isBreak={isBreak} />
         }
-        <Progressbar />
+        <Progressbar 
+          initial={localStorage.getItem(currentInterval)} 
+          time={time} 
+          isPaused={isPaused} 
+          breakAnimation={showBreakTimer && isBreak}
+        />
       </div>
     </div>
   )
