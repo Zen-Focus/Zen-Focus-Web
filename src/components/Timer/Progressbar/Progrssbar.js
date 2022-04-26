@@ -1,49 +1,52 @@
 import React from 'react'
 import './progressbar.css'
 
-const Progressbar = ({ time, initial, isPaused, breakAnimation }) => {
+const Progressbar = ({ time, initial, isPaused }) => {
   const RADIUS = 120
   const circumference = 2 * Math.PI * RADIUS
+  const percent = React.useRef(100)
 
   let sec = 100 / (initial * 60)
 
-  const percent = React.useRef(100)
-
   const draw = (val) => {
-    var circle = document.querySelector('#svg #bar')
+    const svgCircle = document.querySelector('#svg #bar')
 
     if (val < 0) { val = 0 }
     if (val > 100) { val = 100 }
 
     var pct = ((100 - val) / 100) * circumference
 
-    circle.style.strokeDashoffset = pct
+    svgCircle.style.strokeDashoffset = pct
   }
 
   React.useEffect(() => {
-    var circle = document.querySelector('#svg #bar')
+    const svgCircle = document.querySelector('#svg #bar')
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
-        circle.style.transition = 'stroke-dashoffset 0s linear'
+        svgCircle.style.transition = 'stroke-dashoffset 0s linear'
       } else {
-        circle.style.transition = 'stroke-dashoffset 1s linear'
+        svgCircle.style.transition = 'stroke-dashoffset 1s linear'
       }
     })
   }, [])
 
   React.useEffect(() => {
+    const svgCircle = document.querySelector('#svg #bar')
+
     if (!isPaused) {
       percent.current = percent.current - sec
       draw(percent.current)
+    } else {
+      let offset = getComputedStyle(svgCircle).strokeDashoffset
+      svgCircle.style.strokeDashoffset = offset
     }
   }, [isPaused, time]) //eslint-disable-line
 
   React.useEffect(() => {
-    if(time === 0){
+    if (time === 0) {
       percent.current = 100
       draw(percent.current)
-      console.log(isPaused)
     }
   })
 
