@@ -5,8 +5,8 @@ import { Icon } from '@iconify/react'
 
 import './timer.css'
 
-const BreakOptions = ({startBreak}) => {
-  return(
+const BreakOptions = ({ startBreak }) => {
+  return (
     <div id="breakOptions">
       {/* <Icon id="meditationIcon" className="icon" icon="mdi:meditation" height="70" />
       <span style={{ fontSize: "1.5em" }}>or</span>
@@ -17,22 +17,22 @@ const BreakOptions = ({startBreak}) => {
   )
 }
 
-const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) => {
+const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }) => {
   const [timer, setTimer] = useState(null)
-  const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25)*60)
+  const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
   const [isPaused, setIsPaused] = useState(true)
   const [isBreak, setIsBreak] = useState(false)
   const [showBreakTimer, setShowBreakTimer] = useState(true)
   const [currentInterval, setCurrentInterval] = useState('zenIntervalLength')
   const [sound, setSound] = useState()
-  
+
   const startBreak = () => {
     setShowBreakTimer(true)
     setIsPaused(false)
   }
 
   const countDown = () => {
-    setTime(time => time-1)
+    setTime(time => time - 1)
   }
 
   const startTimer = () => {
@@ -49,14 +49,14 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
   }
 
   const showTime = () => {
-    let minutes = Math.floor(time/60)
-    let seconds = time%60
+    let minutes = Math.floor(time / 60)
+    let seconds = time % 60
 
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
   }
 
   useEffect(() => {
-    if(!localStorage.getItem('zenIntervalLength')){
+    if (!localStorage.getItem('zenIntervalLength')) {
       localStorage.setItem('zenIntervalLength', 25)
       localStorage.setItem('zenShortBreak', 5)
       localStorage.setItem('zenLongBreak', 20)
@@ -72,7 +72,7 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
   }, [])
 
   useEffect(() => {
-    if(time <= 0){
+    if (time <= 0) {
       stopTimer()
       sound.play()
 
@@ -86,12 +86,12 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
   useEffect(() => {
     let interval
 
-    if(isBreak === false){
+    if (isBreak === false) {
       setIntervalCount(intervalCount => intervalCount + 1)
       interval = 'zenIntervalLength'
-    } else{
-      setShowBreakTimer(false) 
-      interval = intervalCount < 4 
+    } else {
+      setShowBreakTimer(false)
+      interval = intervalCount < 4
         ? 'zenShortBreak'
         : 'zenLongBreak'
     }
@@ -100,21 +100,21 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
   }, [isBreak]) //eslint-disable-line
 
   useEffect(() => {
-    if(!showBreakTimer && isBreak){
+    if (!showBreakTimer && isBreak) {
       return
     }
-    
+
     let intervalTime = localStorage.getItem(currentInterval)
     stopTimer()
-    setTime(intervalTime*60)
+    setTime(intervalTime * 60)
     setIsPaused(true)
-    if(isBreak){
+    if (isBreak) {
       startTimer()
     }
   }, [reset]) //eslint-disable-line
 
   useEffect(() => {
-    if(skip){  
+    if (skip) {
       stopTimer()
       setIsPaused(true)
 
@@ -128,26 +128,26 @@ const Timer = ({hidden, reset, setIntervalCount, intervalCount, skip, setSkip}) 
 
   useEffect(() => {
     let intervalTime = localStorage.getItem(currentInterval) || 25
-    setTime(intervalTime*60)
+    setTime(intervalTime * 60)
   }, [currentInterval])
 
   useEffect(() => {
-    if(showBreakTimer && isBreak) {
+    if (showBreakTimer && isBreak) {
       startTimer()
     }
   }, [showBreakTimer]) //eslint-disable-line
 
-  return(
+  return (
     <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
         {!showBreakTimer && isBreak
           ? <BreakOptions startBreak={startBreak} />
           : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} isBreak={isBreak} />
         }
-        <Progressbar 
-          initial={localStorage.getItem(currentInterval)} 
-          time={time} 
-          isPaused={isPaused} 
+        <Progressbar
+          initial={localStorage.getItem(currentInterval)}
+          time={time}
+          isPaused={isPaused}
           breakAnimation={showBreakTimer && isBreak}
         />
       </div>
