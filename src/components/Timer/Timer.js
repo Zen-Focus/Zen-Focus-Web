@@ -22,6 +22,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
   const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
   const [isPaused, setIsPaused] = useState(true)
   const [isBreak, setIsBreak] = useState(false)
+  const [startInterval, setStartInterval] = useState(false)
   const [showBreakTimer, setShowBreakTimer] = useState(true)
   const [currentInterval, setCurrentInterval] = useState('zenIntervalLength')
   const [sound, setSound] = useState()
@@ -29,6 +30,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
   const startBreak = () => {
     setShowBreakTimer(true)
     setIsPaused(false)
+    setStartInterval(true)
   }
 
   const countDown = () => {
@@ -46,6 +48,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
   const startStop = () => {
     isPaused ? startTimer() : stopTimer()
     setIsPaused(!isPaused)
+    setStartInterval(true)
   }
 
   const showTime = () => {
@@ -148,7 +151,8 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
           initial={localStorage.getItem(currentInterval)}
           time={time}
           isPaused={isPaused}
-          breakAnimation={showBreakTimer && isBreak}
+          startInterval={startInterval}
+          setStartInterval={setStartInterval}
         />
       </div>
     </div>
