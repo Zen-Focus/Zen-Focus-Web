@@ -153,6 +153,10 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
           isPaused={isPaused}
           startInterval={startInterval}
           setStartInterval={setStartInterval}
+          reset={reset}
+          skip={skip}
+          isBreak={isBreak}
+          setIsPaused={setIsPaused}
         />
       </div>
     </div>
