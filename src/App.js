@@ -43,7 +43,7 @@ function App() {
         : null
       }
       { showMeditation
-        ? <Meditation inhale={4} exhale={4} hold={4} />
+        ? <Meditation inhale={4} exhale={4} inhaleHold={4} exhaleHold={0} />
         : null
       }
       <Timer hidden={showSettings || showMeditation} reset={reset} setIntervalCount={setIntervalCount} intervalCount={intervalCount} skip={skip} setSkip={setSkip}/>

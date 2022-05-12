@@ -2,7 +2,7 @@ import React from 'react'
 
 import './meditation.css'
 
-const Meditation = ({ inhale, exhale, hold}) => {
+const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold}) => {
   const RADIUS = {
     initial: 120,
     expanded: 220
@@ -18,22 +18,50 @@ const Meditation = ({ inhale, exhale, hold}) => {
 
   React.useEffect(() => {
     const meditationSvg = document.querySelector('#meditation-display #bar')
+    const label = document.querySelector('#breath-label p')
 
-    addAnimation(meditationSvg, 'inhale', inhale, RADIUS.expanded)
+    const animationHandler = () => {
+      meditationSvg.style.animationName === "inhale"
+        ? holdAnimation(exhaleAnimation, inhaleHold)
+        : exhaleHold > 0
+          ? holdAnimation(inhaleAnimation, exhaleHold)
+          : inhaleAnimation()
+    }
 
-    meditationSvg.addEventListener("animationend", () => {
-      meditationSvg.style.animationName
-        ? setTimeout(() => {
-            addAnimation(meditationSvg, 'exhale', exhale, RADIUS.initial)
-          }, hold * 1000)
-        : addAnimation(meditationSvg, 'inhale', inhale, RADIUS.expanded)
-    }); 
+    function inhaleAnimation(){
+      label.innerText = 'Breathe In'
+      addAnimation(meditationSvg, 'inhale', inhale, RADIUS.expanded)
+    }
+
+    function exhaleAnimation(){
+      label.innerText = 'Breathe Out'
+      addAnimation(meditationSvg, 'exhale', exhale, RADIUS.initial)
+    }
+
+    function holdAnimation(callback, hold){
+      label.innerText = 'Hold'
+
+      setTimeout(() => {
+        callback()
+      }, hold * 1000)
+    }
+
+    inhaleAnimation()
+
+    meditationSvg.addEventListener("animationend", animationHandler); 
+
+    return () => {
+      meditationSvg.removeEventListener("animationend", animationHandler); 
+    }
 
   }, []) //eslint-disable-line
 
   return (
     <div className="timer-container" id="meditation-display">
       <div className="widget">
+        <div id="breath-label">
+          <p>Breathe In</p>
+        </div>
         <svg id="svg" width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <circle
             id="bar"
