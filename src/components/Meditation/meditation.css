@@ -31,7 +31,6 @@
   transform-origin: center center;
 }
 
-
 @keyframes inhale {
   from {
     r: 120px;
@@ -47,5 +46,25 @@
   }
   to {
     r: 120px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  @keyframes inhale {
+    from {
+      r: 120px;
+    }
+    to {
+      r: 180px;
+    }
+  }
+  
+  @keyframes exhale {
+    from {
+      r: 180px;
+    }
+    to {
+      r: 120px;
+    }
   }
 }

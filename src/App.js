@@ -22,7 +22,7 @@ function App() {
 
   const openMeditation = () => {
     let timer = document.querySelector('#timer')
-    console.log(timer.style.position)
+    
     timer.style.position = timer.style.position === 'absolute'
       ? 'relative'
       : 'absolute'

@@ -8,6 +8,10 @@ const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold}) => {
     expanded: 220
   }
 
+  if (window.matchMedia('(max-device-width: 600px)').matches || window.innerWidth <= 600){
+    RADIUS.expanded = 180
+  }
+
   const [radius, setRadius] = React.useState(RADIUS.initial)
 
   const addAnimation = (element, name, duration, newRadius) => {
