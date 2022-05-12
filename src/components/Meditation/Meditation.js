@@ -2,15 +2,12 @@ import React from 'react'
 
 import './meditation.css'
 
-const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold}) => {
-  const RADIUS = {
-    initial: 120,
-    expanded: 220
-  }
+const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold }) => {
+  let smallScreen = window.matchMedia('(max-device-width: 600px)').matches || window.innerWidth <= 600
 
-  if (window.matchMedia('(max-device-width: 600px)').matches || window.innerWidth <= 600){
-    RADIUS.initial = 100
-    RADIUS.expanded = 150
+  const RADIUS = {
+    initial: smallScreen ? 100 : 120,
+    expanded: smallScreen ? 150 : 220
   }
 
   const [radius, setRadius] = React.useState(RADIUS.initial)
@@ -33,17 +30,17 @@ const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold}) => {
           : inhaleAnimation()
     }
 
-    function inhaleAnimation(){
+    function inhaleAnimation() {
       label.innerText = 'Breathe In'
       addAnimation(meditationSvg, 'inhale', inhale, RADIUS.expanded)
     }
 
-    function exhaleAnimation(){
+    function exhaleAnimation() {
       label.innerText = 'Breathe Out'
       addAnimation(meditationSvg, 'exhale', exhale, RADIUS.initial)
     }
 
-    function holdAnimation(callback, hold){
+    function holdAnimation(callback, hold) {
       label.innerText = 'Hold'
 
       setTimeout(() => {
@@ -53,10 +50,10 @@ const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold}) => {
 
     inhaleAnimation()
 
-    meditationSvg.addEventListener("animationend", animationHandler); 
+    meditationSvg.addEventListener("animationend", animationHandler);
 
     return () => {
-      meditationSvg.removeEventListener("animationend", animationHandler); 
+      meditationSvg.removeEventListener("animationend", animationHandler);
     }
 
   }, []) //eslint-disable-line

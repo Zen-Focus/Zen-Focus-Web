@@ -15,14 +15,14 @@ function App() {
   const [sessionCount, setSessionCount] = useState(1)
 
   const triggerReset = () => setReset(reset => !reset)
-  
+
   const triggerSkip = () => {
     setSkip(true)
   }
 
   const openMeditation = () => {
     let timer = document.querySelector('#timer')
-    
+
     timer.style.position = timer.style.position === 'absolute'
       ? 'relative'
       : 'absolute'
@@ -31,37 +31,37 @@ function App() {
   }
 
   useEffect(() => {
-    if(intervalCount >= 5){
+    if (intervalCount >= 5) {
       setIntervalCount(1)
-      setSessionCount(sessionCount+1)
+      setSessionCount(sessionCount + 1)
     }
   }, [intervalCount]) // eslint-disable-line
 
   return (
     <div id="app">
-      <Navbar 
-        openSettings={() => setShowSettings(!showSettings)} 
+      <Navbar
+        openSettings={() => setShowSettings(!showSettings)}
         openMeditation={openMeditation}
         hideIcons={showSettings}
         isMeditation={showMeditation}
-        triggerReset={triggerReset} 
-        intervalCount={intervalCount} 
+        triggerReset={triggerReset}
+        intervalCount={intervalCount}
         sessionCount={sessionCount}
       />
-      { showSettings
+      {showSettings
         ? <SettingsMenu />
         : null
       }
-      { showMeditation
+      {showMeditation
         ? <Meditation inhale={4} exhale={4} inhaleHold={4} exhaleHold={0} />
         : null
       }
-      <Timer 
-        hidden={showSettings || showMeditation} 
-        reset={reset} 
-        setIntervalCount={setIntervalCount} 
-        intervalCount={intervalCount} 
-        skip={skip} 
+      <Timer
+        hidden={showSettings || showMeditation}
+        reset={reset}
+        setIntervalCount={setIntervalCount}
+        intervalCount={intervalCount}
+        skip={skip}
         setSkip={setSkip}
       />
       <Footer hidden={showSettings || showMeditation} triggerSkip={triggerSkip} />

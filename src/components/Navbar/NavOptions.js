@@ -2,10 +2,10 @@ import React from 'react'
 import Soundscapes from '../Soundscapes/Soundscapes'
 import { Icon } from '@iconify/react'
 
-const NavOptions = ({triggerReset, intervalCount, sessionCount, hideIcons, openMeditation, isMeditation}) => {  
-  return(
+const NavOptions = ({ triggerReset, intervalCount, sessionCount, hideIcons, openMeditation, isMeditation }) => {
+  return (
     <div id="options" style={{ visibility: hideIcons ? 'hidden' : 'visible' }}>
-      {isMeditation 
+      {isMeditation
         ? <Icon id="close-meditation" className="icon" icon="mdi:keyboard-backspace" height={35} onClick={() => openMeditation()} />
         : <>
             <Soundscapes hideIcons={hideIcons} />
