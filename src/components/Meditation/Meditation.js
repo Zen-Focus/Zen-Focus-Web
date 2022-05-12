@@ -17,7 +17,7 @@ const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold}) => {
   }
 
   React.useEffect(() => {
-    const meditationSvg = document.querySelector('#meditation-display #bar')
+    const meditationSvg = document.querySelector('#meditation-circle-bar')
     const label = document.querySelector('#breath-label p')
 
     const animationHandler = () => {
@@ -62,9 +62,9 @@ const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold}) => {
         <div id="breath-label">
           <p>Breathe In</p>
         </div>
-        <svg id="svg" width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg id="meditation-svg" width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <circle
-            id="bar"
+            id="meditation-circle-bar"
             r={radius}
             cx="100"
             cy="100"

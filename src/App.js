@@ -46,7 +46,14 @@ function App() {
         ? <Meditation inhale={4} exhale={4} inhaleHold={4} exhaleHold={0} />
         : null
       }
-      <Timer hidden={showSettings || showMeditation} reset={reset} setIntervalCount={setIntervalCount} intervalCount={intervalCount} skip={skip} setSkip={setSkip}/>
+      <Timer 
+        hidden={showSettings || showMeditation} 
+        reset={reset} 
+        setIntervalCount={setIntervalCount} 
+        intervalCount={intervalCount} 
+        skip={skip} 
+        setSkip={setSkip}
+      />
       <Footer hidden={showSettings || showMeditation} triggerSkip={triggerSkip} />
     </div>
   )
