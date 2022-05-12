@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './settingsMenu.css'
 
-const Option = ({label, unit, setState, value}) => (
+const Option = ({ label, unit, setState, value }) => (
   <p className="optionsText">
-    {label} 
+    {label}
     <span className="optionsValue">
-    <input 
-        min="1" max="60" 
-        type="range" 
+      <input
+        min="1" max="60"
+        type="range"
         value={value}
         onChange={(e) => setState(e.target.value)}
       />
@@ -35,13 +35,13 @@ const SettingsMenu = () => {
 
   }, [intervalLength, shortBreak, longBreak/* , inhalation, exhalation, hold */]) //eslint-disable-line
 
-  return(
+  return (
     <div id="settingsMenu">
       <h2 className="heading">Pomodoro</h2>
-      <Option label="Interval Length:" unit={'min'} value={intervalLength} setState={setIntervalLength}/>
+      <Option label="Interval Length:" unit={'min'} value={intervalLength} setState={setIntervalLength} />
       <Option label="Short Break Length:" unit={'min'} value={shortBreak} setState={setShortBreak} />
       <Option label="Long Break Length:" unit={'min'} value={longBreak} setState={setLongBreak} />
-      <br/>
+      <br />
       {/* <h2 className="heading">Box Breathing</h2>
       <Option label="Inhalation:" unit={'s'} value={inhalation} setState={setInhalation} />
       <Option label="Exhalation:" unit={'s'} value={exhalation} setState={setExhalation} />
