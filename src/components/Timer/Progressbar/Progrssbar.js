@@ -31,10 +31,10 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
     })
   }, [])
 
-  React.useEffect(() => { 
-    const svgCircle = document.querySelector('#svg #bar') 
-    
-    if(startInterval){
+  React.useEffect(() => {
+    const svgCircle = document.querySelector('#svg #bar')
+
+    if (startInterval) {
       svgCircle.style.transition = 'stroke-dashoffset 1s linear'
       percent.current = percent.current - percentPerSecond
       draw(percent.current)
@@ -44,7 +44,7 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
   React.useEffect(() => {
     const svgCircle = document.querySelector('#svg #bar')
 
-    if(isPaused) {
+    if (isPaused) {
       let offset = getComputedStyle(svgCircle).strokeDashoffset
       svgCircle.style.strokeDashoffset = offset
 
@@ -52,7 +52,7 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
       let percentDiff = Math.abs(percent.current - actualPercent)
       timeDiff.current = (1 / percentPerSecond) * percentDiff
     } else {
-      if(timeDiff.current){
+      if (timeDiff.current) {
         /* TODO: smoother animation */
         svgCircle.style.transitionDuration = `${timeDiff.current}s`
         draw(percent.current)
@@ -69,8 +69,6 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
     }
   })
 
-  console.log(isBreak)
-
   React.useEffect(() => {
     const svgCircle = document.querySelector('#svg #bar')
     percent.current = 100
@@ -81,7 +79,7 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
 
   React.useEffect(() => {
     const svgCircle = document.querySelector('#svg #bar')
-    if(isBreak && !isPaused) {
+    if (isBreak && !isPaused) {
       setTimeout(() => {
         svgCircle.style.transition = 'stroke-dashoffset 1s linear'
         setStartInterval(true)

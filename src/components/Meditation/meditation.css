@@ -1,0 +1,21 @@
+#meditation-display #bar {
+  transform-origin: center center;
+}
+
+@keyframes inhale {
+  from {
+    r: 120px;
+  }
+  to {
+    r: 220px;
+  }
+}
+
+@keyframes exhale {
+  from {
+    r: 220px;
+  }
+  to {
+    r: 120px;
+  }
+}

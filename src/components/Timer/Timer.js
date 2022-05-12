@@ -129,7 +129,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
   }, [showBreakTimer]) //eslint-disable-line
 
   return (
-    <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
+    <div id="timer" className="timer-container" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
         {!showBreakTimer && isBreak
           ? <BreakMenu startBreak={startBreak} />

@@ -11,7 +11,6 @@ const Option = ({ label, unit, setState, value }) => (
         value={value}
         onChange={(e) => setState(e.target.value)}
       />
-      {/* <input type="number" min="1" max="60" className="valueInput" value={value} onChange={(e) => setState(e.target.value)}/> */}
       <span className="menu-input-value">{value}</span> {unit}
     </span>
   </p>
