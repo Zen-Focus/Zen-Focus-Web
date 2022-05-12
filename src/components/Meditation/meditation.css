@@ -50,21 +50,25 @@
 }
 
 @media only screen and (max-width: 600px) {
+  #breath-label {
+    font-size: 1.5em;
+  }
+
   @keyframes inhale {
     from {
-      r: 120px;
+      r: 100px;
     }
     to {
-      r: 180px;
+      r: 150px;
     }
   }
   
   @keyframes exhale {
     from {
-      r: 180px;
+      r: 150px;
     }
     to {
-      r: 120px;
+      r: 100px;
     }
   }
 }
