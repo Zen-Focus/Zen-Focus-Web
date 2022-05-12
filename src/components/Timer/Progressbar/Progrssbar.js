@@ -43,7 +43,7 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
 
   React.useEffect(() => {
     const svgCircle = document.querySelector('#svg #bar')
-    console.log(isPaused)
+
     if(isPaused) {
       let offset = getComputedStyle(svgCircle).strokeDashoffset
       svgCircle.style.strokeDashoffset = offset
@@ -69,6 +69,8 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
     }
   })
 
+  console.log(isBreak)
+
   React.useEffect(() => {
     const svgCircle = document.querySelector('#svg #bar')
     percent.current = 100
@@ -76,6 +78,16 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
     svgCircle.style.strokeDashoffset = '0px'
     setStartInterval(false)
   }, [reset, skip]) // eslint-disable-line
+
+  React.useEffect(() => {
+    const svgCircle = document.querySelector('#svg #bar')
+    if(isBreak && !isPaused) {
+      setTimeout(() => {
+        svgCircle.style.transition = 'stroke-dashoffset 1s linear'
+        setStartInterval(true)
+      }, 500)
+    }
+  }, [reset]) // eslint-disable-line
 
   return (
     <svg id="svg" width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">

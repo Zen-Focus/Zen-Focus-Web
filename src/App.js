@@ -12,7 +12,9 @@ function App() {
   const [intervalCount, setIntervalCount] = useState(0)
   const [sessionCount, setSessionCount] = useState(1)
 
+  // TODO: turn reset and skip trigger into accurate depiction of false and true
   const triggerReset = () => setReset(reset => !reset)
+  
   const triggerSkip = () => {
     setSkip(true)
   }

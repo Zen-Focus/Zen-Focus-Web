@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Countdown from './Countdown/Countdown'
 import Progressbar from './Progressbar/Progrssbar'
-import { Icon } from '@iconify/react'
+import BreakMenu from './BreakMenu/BreakMenu'
 
 import './timer.css'
-
-const BreakOptions = ({ startBreak }) => {
-  return (
-    <div id="breakOptions">
-      {/* <Icon id="meditationIcon" className="icon" icon="mdi:meditation" height="70" />
-      <span style={{ fontSize: "1.5em" }}>or</span>
-      <Icon id="clockIcon" className="icon" icon="bi:clock-history" height="45" onClick={() => setShowBreakTimer(true)} /> */}
-      <p id="break-text">Ready for a break?</p>
-      <Icon id="clockIcon" className="icon" icon="ci:check" height="45" onClick={() => startBreak()} />
-    </div>
-  )
-}
 
 const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }) => {
   const [timer, setTimer] = useState(null)
@@ -110,9 +98,9 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
     let intervalTime = localStorage.getItem(currentInterval)
     stopTimer()
     setTime(intervalTime * 60)
-    setIsPaused(true)
+    if (!isBreak) { setIsPaused(true) }
     if (isBreak) {
-      startTimer()
+      setTimeout(() => startTimer(), 500)
     }
   }, [reset]) //eslint-disable-line
 
@@ -144,7 +132,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
     <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
         {!showBreakTimer && isBreak
-          ? <BreakOptions startBreak={startBreak} />
+          ? <BreakMenu startBreak={startBreak} />
           : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} isBreak={isBreak} />
         }
         <Progressbar

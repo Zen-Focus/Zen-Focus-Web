@@ -38,24 +38,3 @@
   left: 83px;
   top: 70px;
 }
-
-#breakOptions{
-  position: absolute;
-  left: 50%;
-  top: 55%;
-  transform: translate(-50%,-50%);
-  font-size: 1.3em;
-}
-
-#break-text {
-  margin: 5px;
-}
-
-/* #clockIcon{
-  margin-left: 20px;
-} */
-
-#meditationIcon{
-  margin-right: 9px;
-  margin-left: -9px;
-}
