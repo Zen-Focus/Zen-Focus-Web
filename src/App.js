@@ -20,6 +20,16 @@ function App() {
     setSkip(true)
   }
 
+  const openMeditation = () => {
+    let timer = document.querySelector('#timer')
+    console.log(timer.style.position)
+    timer.style.position = timer.style.position === 'absolute'
+      ? 'relative'
+      : 'absolute'
+
+    setShowMeditation(!showMeditation)
+  }
+
   useEffect(() => {
     if(intervalCount >= 5){
       setIntervalCount(1)
@@ -31,7 +41,7 @@ function App() {
     <div id="app">
       <Navbar 
         openSettings={() => setShowSettings(!showSettings)} 
-        openMeditation={() => setShowMeditation(!showMeditation)}
+        openMeditation={openMeditation}
         hideIcons={showSettings}
         isMeditation={showMeditation}
         triggerReset={triggerReset} 
