@@ -53,7 +53,7 @@ function App() {
         : null
       }
       {showMeditation
-        ? <Meditation inhale={4} exhale={4} inhaleHold={4} exhaleHold={0} />
+        ? <Meditation />
         : null
       }
       <Timer

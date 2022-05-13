@@ -53,7 +53,8 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
       localStorage.setItem('zenLongBreak', 20)
       localStorage.setItem('zenInhalation', 4)
       localStorage.setItem('zenExhalation', 4)
-      localStorage.setItem('zenHold', 4)
+      localStorage.setItem('zenInhaleHold', 4)
+      localStorage.setItem('zenExhaleHold', 4)
     }
 
     let audio = new Audio('https://github.com/Schlenges/uploads/blob/main/zapsplat_multimedia_notification_alert_prompt_bright_chime_ping_001_42408.mp3?raw=true')

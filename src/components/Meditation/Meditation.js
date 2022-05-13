@@ -2,7 +2,12 @@ import React from 'react'
 
 import './meditation.css'
 
-const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold }) => {
+const Meditation = () => {
+  const inhale = localStorage.getItem('zenInhalation')
+  const exhale = localStorage.getItem('zenExhalation')
+  const inhaleHold = localStorage.getItem('zenInhaleHold')
+  const exhaleHold = localStorage.getItem('zenExhaleHold')
+
   let smallScreen = window.matchMedia('(max-device-width: 600px)').matches || window.innerWidth <= 600
 
   const RADIUS = {
@@ -24,7 +29,9 @@ const Meditation = ({ inhale, exhale, inhaleHold, exhaleHold }) => {
 
     const animationHandler = () => {
       meditationSvg.style.animationName === "inhale"
-        ? holdAnimation(exhaleAnimation, inhaleHold)
+        ? inhaleHold > 0
+          ? holdAnimation(exhaleAnimation, inhaleHold)
+          : exhaleAnimation()
         : exhaleHold > 0
           ? holdAnimation(inhaleAnimation, exhaleHold)
           : inhaleAnimation()
