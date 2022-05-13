@@ -63,6 +63,7 @@ function App() {
         intervalCount={intervalCount}
         skip={skip}
         setSkip={setSkip}
+        openMeditation={openMeditation}
       />
       <Footer hidden={showSettings || showMeditation} triggerSkip={triggerSkip} />
     </div>

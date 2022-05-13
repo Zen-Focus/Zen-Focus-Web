@@ -5,7 +5,7 @@ import BreakMenu from './BreakMenu/BreakMenu'
 
 import './timer.css'
 
-const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }) => {
+const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, openMeditation }) => {
   const [timer, setTimer] = useState(null)
   const [intervalTime, setIntervalTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
   const [time, setTime] = useState(intervalTime)
@@ -135,7 +135,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
     <div id="timer" className="timer-container" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
         {!showBreakTimer && isBreak
-          ? <BreakMenu startBreak={startBreak} />
+          ? <BreakMenu startBreak={startBreak} openMeditation={openMeditation}/>
           : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} isBreak={isBreak} />
         }
         <Progressbar
