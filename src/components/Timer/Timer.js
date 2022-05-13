@@ -7,8 +7,7 @@ import './timer.css'
 
 const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, openMeditation }) => {
   const [timer, setTimer] = useState(null)
-  const [intervalTime, setIntervalTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
-  const [time, setTime] = useState(intervalTime)
+  const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
   const [isPaused, setIsPaused] = useState(true)
   const [isBreak, setIsBreak] = useState(false)
   const [startInterval, setStartInterval] = useState(false)
@@ -97,10 +96,10 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, 
       return
     }
 
-    setIntervalTime(localStorage.getItem(currentInterval))
+    let intervalTime = localStorage.getItem(currentInterval)
 
     stopTimer()
-    setTime(localStorage.getItem(currentInterval) * 60)
+    setTime(intervalTime * 60)
     if (!isBreak) { setIsPaused(true) }
     if (isBreak) {
       setTimeout(() => startTimer(), 500)
@@ -139,7 +138,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, 
           : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} isBreak={isBreak} />
         }
         <Progressbar
-          initial={intervalTime}
+          initial={localStorage.getItem(currentInterval)}
           time={time}
           isPaused={isPaused}
           startInterval={startInterval}
