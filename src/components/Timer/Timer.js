@@ -47,7 +47,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
   }
 
   useEffect(() => {
-    if (!localStorage.getItem('zenInhalation')) {
+    if (!localStorage.getItem('zenInhaleHold')) {
       localStorage.setItem('zenIntervalLength', 25)
       localStorage.setItem('zenShortBreak', 5)
       localStorage.setItem('zenLongBreak', 20)
