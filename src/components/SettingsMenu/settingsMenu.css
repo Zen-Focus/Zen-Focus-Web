@@ -29,18 +29,6 @@
   width: 10px;
 }
 
-.valueInput{
-  width: 50px;
-  background: inherit;
-  border: none;
-  color: inherit;
-  font-size: inherit;
-  text-align: right;
-  border-radius: 3px;
-  padding: 0;
-  padding-right: 2px;
-}
-
 .menu-input-value {
   width: 25px;
   display: inline-block;

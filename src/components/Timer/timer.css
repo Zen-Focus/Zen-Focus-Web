@@ -1,11 +1,10 @@
-#timer{
+.timer-container{
   width: 200px;
-  margin: 0 auto;
-  margin-top: 200px;
-  height: 200px;
+  margin: auto;
   padding: 33px;
   position: relative;
   text-align: center;
+  align-self: center;
 }
 
 .widget{

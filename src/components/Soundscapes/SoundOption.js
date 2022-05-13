@@ -1,11 +1,11 @@
-import React, { useState} from "react"
+import React, { useState } from "react"
 import { Icon } from '@iconify/react'
 
-const SoundOption = ({sound, toggleSound, controlVolume, isMuted}) => {
+const SoundOption = ({ sound, toggleSound, controlVolume, isMuted }) => {
   const [volume, setVolume] = useState(5)
 
   const handleClick = (id) => {
-    if(sound.audio.volume === 0 && !isMuted){
+    if (sound.audio.volume === 0 && !isMuted) {
       sound.audio.volume = 0.1
     }
     toggleSound(id)
@@ -17,17 +17,17 @@ const SoundOption = ({sound, toggleSound, controlVolume, isMuted}) => {
   }
 
   React.useEffect(() => {
-    setVolume(sound.audio.volume*10)
+    setVolume(sound.audio.volume * 10)
   }, [sound.audio.volume])
 
-  return(
+  return (
     <span className="sound-item">
-      <Icon id={sound.id} className="sounds icon" icon={sound.icon} height={20} onClick={() => handleClick(sound.id)}/>
-      <input 
-        min="0" max="10" 
-        type="range" 
+      <Icon id={sound.id} className="sounds icon" icon={sound.icon} height={20} onClick={() => handleClick(sound.id)} />
+      <input
+        min="0" max="10"
+        type="range"
         value={volume}
-        onChange={(event) => handleChange(event.target.value)} 
+        onChange={(event) => handleChange(event.target.value)}
         onClick={() => controlVolume(volume, sound.id)}
       />
     </span>

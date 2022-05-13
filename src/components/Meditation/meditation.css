@@ -1,0 +1,74 @@
+#meditation-display {
+  width: 200px;
+  margin: auto;
+  padding: 33px;
+  position: relative;
+  text-align: center;
+  align-self: center;
+}
+
+#breath-label{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 1.8em;
+  width: max-content;
+}
+
+#meditation-svg {
+  transform: scaleX(-1) rotate(-90deg);
+  overflow: visible;
+  position: relative;
+  z-index: -1;
+}
+
+#meditation-circle-bar {
+  stroke: #5550FF;
+  stroke-width: 8;
+  filter: drop-shadow(0px 0px 10px #5550FF);
+  stroke-linecap: round;
+  transform-origin: center center;
+}
+
+@keyframes inhale {
+  from {
+    r: 120px;
+  }
+  to {
+    r: 220px;
+  }
+}
+
+@keyframes exhale {
+  from {
+    r: 220px;
+  }
+  to {
+    r: 120px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #breath-label {
+    font-size: 1.5em;
+  }
+
+  @keyframes inhale {
+    from {
+      r: 100px;
+    }
+    to {
+      r: 150px;
+    }
+  }
+  
+  @keyframes exhale {
+    from {
+      r: 150px;
+    }
+    to {
+      r: 100px;
+    }
+  }
+}

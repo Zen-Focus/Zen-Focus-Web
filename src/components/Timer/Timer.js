@@ -7,7 +7,8 @@ import './timer.css'
 
 const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }) => {
   const [timer, setTimer] = useState(null)
-  const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
+  const [intervalTime, setIntervalTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
+  const [time, setTime] = useState(intervalTime)
   const [isPaused, setIsPaused] = useState(true)
   const [isBreak, setIsBreak] = useState(false)
   const [startInterval, setStartInterval] = useState(false)
@@ -47,13 +48,14 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
   }
 
   useEffect(() => {
-    if (!localStorage.getItem('zenIntervalLength')) {
+    if (!localStorage.getItem('zenInhaleHold')) {
       localStorage.setItem('zenIntervalLength', 25)
       localStorage.setItem('zenShortBreak', 5)
       localStorage.setItem('zenLongBreak', 20)
       localStorage.setItem('zenInhalation', 4)
       localStorage.setItem('zenExhalation', 4)
-      localStorage.setItem('zenHold', 4)
+      localStorage.setItem('zenInhaleHold', 4)
+      localStorage.setItem('zenExhaleHold', 4)
     }
 
     let audio = new Audio('https://github.com/Schlenges/uploads/blob/main/zapsplat_multimedia_notification_alert_prompt_bright_chime_ping_001_42408.mp3?raw=true')
@@ -95,9 +97,10 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
       return
     }
 
-    let intervalTime = localStorage.getItem(currentInterval)
+    setIntervalTime(localStorage.getItem(currentInterval))
+
     stopTimer()
-    setTime(intervalTime * 60)
+    setTime(localStorage.getItem(currentInterval) * 60)
     if (!isBreak) { setIsPaused(true) }
     if (isBreak) {
       setTimeout(() => startTimer(), 500)
@@ -129,14 +132,14 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
   }, [showBreakTimer]) //eslint-disable-line
 
   return (
-    <div id="timer" style={{ visibility: hidden ? "hidden" : "visible" }}>
+    <div id="timer" className="timer-container" style={{ visibility: hidden ? "hidden" : "visible" }}>
       <div className="widget">
         {!showBreakTimer && isBreak
           ? <BreakMenu startBreak={startBreak} />
           : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} isBreak={isBreak} />
         }
         <Progressbar
-          initial={localStorage.getItem(currentInterval)}
+          initial={intervalTime}
           time={time}
           isPaused={isPaused}
           startInterval={startInterval}
@@ -144,7 +147,6 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip }
           reset={reset}
           skip={skip}
           isBreak={isBreak}
-          setIsPaused={setIsPaused}
         />
       </div>
     </div>
