@@ -53,7 +53,6 @@ const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval,
       timeDiff.current = (1 / percentPerSecond) * percentDiff
     } else {
       if (timeDiff.current) {
-        /* TODO: smoother animation */
         svgCircle.style.transitionDuration = `${timeDiff.current}s`
         draw(percent.current)
         document.querySelector('#svg #bar').style.transitionDuration = `1s`
