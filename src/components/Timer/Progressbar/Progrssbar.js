@@ -1,7 +1,7 @@
 import React from 'react'
 import './progressbar.css'
 
-const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval, reset, skip, isBreak, setIsPaused }) => {
+const Progressbar = ({ time, initial, isPaused, startInterval, setStartInterval, reset, skip, isBreak }) => {
   const RADIUS = 120
   const circumference = 2 * Math.PI * RADIUS
   const percent = React.useRef(100)
