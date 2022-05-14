@@ -8,6 +8,7 @@ import './timer.css'
 const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, openMeditation }) => {
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
+  const [intervalTime, setIntervalTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
   const [isPaused, setIsPaused] = useState(true)
   const [isBreak, setIsBreak] = useState(false)
   const [startInterval, setStartInterval] = useState(false)
@@ -97,13 +98,15 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, 
     }
 
     let intervalTime = localStorage.getItem(currentInterval)
+    setIntervalTime(intervalTime)
 
     stopTimer()
     setTime(intervalTime * 60)
-    if (!isBreak) { setIsPaused(true) }
-    if (isBreak) {
-      setTimeout(() => startTimer(), 500)
-    }
+
+    isBreak
+      ? setTimeout(() => startTimer(), 500)
+      : setIsPaused(true)
+
   }, [reset]) //eslint-disable-line
 
   useEffect(() => {
@@ -121,6 +124,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, 
 
   useEffect(() => {
     let intervalTime = localStorage.getItem(currentInterval) || 25
+    setIntervalTime(intervalTime)
     setTime(intervalTime * 60)
   }, [currentInterval])
 
@@ -138,7 +142,7 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, 
           : <Countdown showTime={showTime} isPaused={isPaused} startStop={startStop} isBreak={isBreak} />
         }
         <Progressbar
-          initial={localStorage.getItem(currentInterval)}
+          initial={intervalTime}
           time={time}
           isPaused={isPaused}
           startInterval={startInterval}
