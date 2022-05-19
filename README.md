@@ -6,6 +6,8 @@ Zen Focus is a pomodoro timer created with the intention of promoting concentrat
 
 ## Usage
 
+![Zen Focus Legend](https://raw.githubusercontent.com/Zen-Focus/.github/master/assets/legend-l.png)
+
 ### Pomodoro Timer
 
 The interval and break lengths of the pomodoro timer can be freely adjusted in the settings. If you change the time of the currently running interval or break, the change will automatically apply to the next iteration as to not interrupt your original work flow. If you want the changes to take effect immediately, simply click the reset button in the app's navigation bar. This will start the current interval over in its new length.
@@ -13,10 +15,6 @@ The interval and break lengths of the pomodoro timer can be freely adjusted in t
 Zen Focus is designed to be as unintrusive as possible to not interrupt your flow or meditation while still providing structure. For this reason, the app will indicate the end of any interval or break with a chime sound, but only start running the next interval or break once you confirm you are ready to move on.
 
 If you want to skip to the next interval or break, you can find a skip button in the bottom right corner of the screen.
-
-<br>
-
-![Zen Focus Legend](https://raw.githubusercontent.com/Zen-Focus/.github/master/assets/legend-l.png)
 
 ### Meditation
 
