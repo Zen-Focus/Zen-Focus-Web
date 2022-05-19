@@ -4,11 +4,7 @@
 
 Zen Focus is a pomodoro timer created with the intention of promoting concentration and flow. It offers a small selection of soundscapes to stay focused during work, as well as a breathing meditation feature that can help lower stress and anxiety and keep you in the present moment.  
 
-## Usage
-
-![Zen Focus Legend](https://raw.githubusercontent.com/Zen-Focus/.github/master/assets/legend-l.png)
-
-### Pomodoro Timer
+## Pomodoro Timer
 
 The interval and break lengths of the pomodoro timer can be freely adjusted in the settings. If you change the time of the currently running interval or break, the change will automatically apply to the next iteration as to not interrupt your original work flow. If you want the changes to take effect immediately, simply click the reset button in the app's navigation bar. This will start the current interval over in its new length.
 
@@ -16,7 +12,11 @@ Zen Focus is designed to be as unintrusive as possible to not interrupt your flo
 
 If you want to skip to the next interval or break, you can find a skip button in the bottom right corner of the screen.
 
-### Meditation
+<br>
+
+![Zen Focus Legend](https://raw.githubusercontent.com/Zen-Focus/.github/master/assets/legend-l.png)
+
+## Meditation
 
 For every break, the timer will prompt you with the choice of taking a few minutes for a breathing meditation. The meditation is visually guided, inviting you to adjust your breathing to the expansion and conctraction of a circle on screen. The length of each inhalation, exhalation, and breath hold can be adjusted in the settings. The app will soon offer a selection of default options to choose from, until then you might want to experiment with different breathing techniques. Here are some examples to get you started:
 
@@ -26,6 +26,6 @@ For every break, the timer will prompt you with the choice of taking a few minut
 
 Of course the meditation option is also accessible through the navigation bar whenever you need it.  
 
-### Soundscapes
+## Soundscapes
 
 Another feature Zen Focus offers (that will still be expanded on) are soundscapes. You can layer each sound on top of each other and adjust the individual volume to create a unique ambient that is tailored to your needs and preferences.
