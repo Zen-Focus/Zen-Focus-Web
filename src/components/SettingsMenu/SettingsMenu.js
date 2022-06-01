@@ -54,11 +54,11 @@ const SettingsMenu = () => {
 
       <div id="settings-footer">
         <a href="https://github.com/Zen-Focus/Zen-Focus-Web" target="_blank" rel="noopener noreferrer" className="settings-link">
-          <Icon id="github" className="icon" icon="fa6-brands:github-square" height={20} />
+          <Icon id="github" className="icon" icon="fa-brands:github-square" height={20} />
           <span className="settings-link-text">Repository</span>
         </a>
         <a href="https://ko-fi.com/mhanki" target="_blank" rel="noopener noreferrer" className="settings-link">
-          <Icon id="ko-fi" className="icon" icon="cib:ko-fi" height={20} />
+          <Icon id="ko-fi" className="icon" icon="simple-icons:kofi" height={22} />
           <span className="settings-link-text">Support on Ko-Fi</span>
         </a>
       </div>
