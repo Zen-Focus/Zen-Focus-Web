@@ -50,3 +50,23 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+#settings-footer {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 0.5px solid #E0E0E1;
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+
+.settings-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.settings-link-text {
+  margin-left: 10px;
+}
