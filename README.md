@@ -29,4 +29,4 @@ Of course the meditation option is also accessible through the navigation bar wh
 
 ### Soundscapes
 
-Another feature Zen Focus offers (that will still be expanded on) are soundscapes. You can layer each sound on top of each other and adjust the individual volume to create a unique ambient that is tailored to your needs and preferences.
+Another feature Zen Focus offers (that will still be expanded) are soundscapes. You can layer each sound on top of each other and adjust the individual volume to create a unique ambient that is tailored to your needs and preferences.
