@@ -46,7 +46,7 @@ const SettingsMenu = () => {
       <Option label="Short Break Length:" unit={'min'} value={shortBreak} setState={setShortBreak} range={timerRange} />
       <Option label="Long Break Length:" unit={'min'} value={longBreak} setState={setLongBreak} range={timerRange} />
       <br />
-      <h2 className="heading">Box Breathing</h2>
+      <h2 className="heading">Breathing Meditation</h2>
       <Option label="Inhalation:" unit={'s'} value={inhalation} setState={setInhalation} range={meditationRange} />
       <Option label="Exhalation:" unit={'s'} value={exhalation} setState={setExhalation} range={meditationRange} />
       <Option label="Inhale Hold:" unit={'s'} value={inhaleHold} setState={setInhaleHold} range={[0, 30]} />
