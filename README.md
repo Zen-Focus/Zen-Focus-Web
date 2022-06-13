@@ -1,6 +1,14 @@
 ![Zen Focus Logo](https://raw.githubusercontent.com/Zen-Focus/Zen-Focus-Web/master/assets/gh-banner.png)
 
-<h1 align="center">Zen Focus</h1>
+<div align="center">
+	<h1>Zen Focus</h1>
+	<p>
+		<b>A Minimalistic Pomodoro Timer with Breathing Meditation Support and Soundscapes</b>
+	</p>
+	<br>
+	<br>
+	<br>
+</div>
 
 Zen Focus is a pomodoro timer created with the intention of promoting concentration and flow. It offers a small selection of soundscapes to stay focused during work, as well as a breathing meditation feature that can help lower stress and anxiety and keep you in the present moment.
 
