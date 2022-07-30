@@ -25,7 +25,7 @@ const SettingsMenu = () => {
   const [exhalation, setExhalation] = useState(localStorage.getItem('zenExhalation'))
   const [inhaleHold, setInhaleHold] = useState(localStorage.getItem('zenInhaleHold'))
   const [exhaleHold, setExhaleHold] = useState(localStorage.getItem('zenExhaleHold'))
-  const timerRange = [1, 60]
+  const timerRange = [1, 90]
   const meditationRange = [1, 30]
 
   useEffect(() => {
