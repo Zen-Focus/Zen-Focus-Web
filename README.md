@@ -1,14 +1,22 @@
-![Zen Focus Logo](https://raw.githubusercontent.com/Zen-Focus/Zen-Focus-Web/master/assets/gh-banner.png)
+<p align="center">
+  <h1 align="center">Zen Focus</h1>
 
-<div align="center">
-	<h1>Zen Focus</h1>
-	<p>
-		<b>A Minimalistic Pomodoro Timer with Breathing Meditation Support and Soundscapes</b>
-	</p>
-	<br>
-	<br>
-	<br>
-</div>
+  <p align="center">
+     <strong>A Minimalistic Pomodoro Timer with Breathing Meditation Support and Soundscapes</strong>
+    <br>
+  </p>
+  <a href="https://github.com/Zen-Focus/Zen-Focus-Web">
+    <img src="https://raw.githubusercontent.com/Zen-Focus/Zen-Focus-Web/master/assets/gh-banner.png" alt="App Banner">
+  </a> 
+</p>
+
+## Table of contents
+- [About the App](#about-the-app)
+- [Technical](#technical)
+- [Contributing](#contributing)
+- [Licence](#license)
+
+## About the App
 
 Zen Focus is a pomodoro timer created with the intention of promoting concentration and flow. It offers a small selection of soundscapes to stay focused during work, as well as a breathing meditation feature that can help lower stress and anxiety and keep you in the present moment.
 
@@ -37,3 +45,33 @@ Of course the meditation option is also accessible through the navigation bar wh
 ### Soundscapes
 
 Another feature Zen Focus offers (that will still be expanded) are soundscapes. You can layer each sound on top of each other and adjust the individual volume to create a unique ambient that is tailored to your needs and preferences.
+
+
+## Technical
+
+### Technologies Used
+
+![React](https://img.shields.io/static/v1?message=React&logo=React&logoColor=61DAFB&label=%20&labelColor=595959&color=61DAFB) 
+![HTML](https://img.shields.io/static/v1?message=HTML&logo=HTML5&logoColor=E34F26&label=%20&labelColor=595959&color=E34F26) 
+![CSS](https://img.shields.io/static/v1?message=CSS&logo=CSS3&logoColor=1572B6&label=%20&labelColor=595959&color=1572B6) 
+
+### Development Setup
+
+1. Clone the [repository](https://github.com/Zen-Focus/Zen-Focus-Web)
+2. Install dependencies with ```npm install```
+3. Start the app with ```npm start```
+
+### To Do List
+
+You can find a roadmap for this project [here](https://github.com/orgs/Zen-Focus/projects/1).
+
+### Contributing
+
+- Found a **bug** or have a concrete **feature request**? Open a corresponding issue via the [Issues Tab](https://github.com/Zen-Focus/Zen-Focus-Web/issues).
+
+- For any other **feedback**, **questions**, or **ideas**, please use the [Discussions Tab](https://github.com/Zen-Focus/Zen-Focus-Web/discussions) to reach out.
+
+
+## License
+
+* see [LICENSE](https://github.com/YourUserNameHere/ProjectName/LICENSE.md) file
