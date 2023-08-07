@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Icon } from '@iconify/react'
 import './settingsMenu.css'
 
-const Option = ({ label, unit, setState, value, range }) => (
+/* const Option = ({ label, unit, setState, value, range }) => (
   <p className="optionsText">
     {label}
     <span className="optionsValue">
@@ -15,7 +15,7 @@ const Option = ({ label, unit, setState, value, range }) => (
       <span className="menu-input-value">{value}</span> {unit}
     </span>
   </p>
-)
+) */
 
 const InputOption = ({ label, unit, setState, value, range }) => (
   <p className="optionsText">
