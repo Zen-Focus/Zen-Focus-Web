@@ -17,6 +17,22 @@ const Option = ({ label, unit, setState, value, range }) => (
   </p>
 )
 
+const InputOption = ({ label, unit, setState, value, range }) => (
+  <p className="optionsText">
+    {label}
+    <span className="optionsValue">
+      <input
+        min={range[0]} max={range[1]}
+        type="text"
+        value={value}
+        onChange={(e) => setState(e.target.value)}
+        pattern="[0-9]+"
+      />
+      {unit}
+    </span>
+  </p>
+)
+
 const SettingsMenu = () => {
   const [intervalLength, setIntervalLength] = useState(localStorage.getItem('zenIntervalLength'))
   const [shortBreak, setShortBreak] = useState(localStorage.getItem('zenShortBreak'))
@@ -42,15 +58,15 @@ const SettingsMenu = () => {
   return (
     <div id="settingsMenu">
       <h2 className="heading">Pomodoro</h2>
-      <Option label="Interval Length:" unit={'min'} value={intervalLength} setState={setIntervalLength} range={timerRange} />
-      <Option label="Short Break Length:" unit={'min'} value={shortBreak} setState={setShortBreak} range={timerRange} />
-      <Option label="Long Break Length:" unit={'min'} value={longBreak} setState={setLongBreak} range={timerRange} />
+      <InputOption label="Interval Length:" unit={'min'} value={intervalLength} setState={setIntervalLength} range={timerRange} />
+      <InputOption label="Short Break Length:" unit={'min'} value={shortBreak} setState={setShortBreak} range={timerRange} />
+      <InputOption label="Long Break Length:" unit={'min'} value={longBreak} setState={setLongBreak} range={timerRange} />
       <br />
       <h2 className="heading">Breathing Meditation</h2>
-      <Option label="Inhalation:" unit={'s'} value={inhalation} setState={setInhalation} range={meditationRange} />
-      <Option label="Exhalation:" unit={'s'} value={exhalation} setState={setExhalation} range={meditationRange} />
-      <Option label="Inhale Hold:" unit={'s'} value={inhaleHold} setState={setInhaleHold} range={[0, 30]} />
-      <Option label="Exhale Hold:" unit={'s'} value={exhaleHold} setState={setExhaleHold} range={[0, 30]} />
+      <InputOption label="Inhalation:" unit={'sec'} value={inhalation} setState={setInhalation} range={meditationRange} />
+      <InputOption label="Exhalation:" unit={'sec'} value={exhalation} setState={setExhalation} range={meditationRange} />
+      <InputOption label="Inhale Hold:" unit={'sec'} value={inhaleHold} setState={setInhaleHold} range={[0, 30]} />
+      <InputOption label="Exhale Hold:" unit={'sec'} value={exhaleHold} setState={setExhaleHold} range={[0, 30]} />
 
       <div id="settings-footer">
         <a href="https://github.com/Zen-Focus/Zen-Focus-Web" target="_blank" rel="noopener noreferrer" className="settings-link">
