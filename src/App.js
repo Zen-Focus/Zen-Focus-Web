@@ -11,6 +11,7 @@ function App() {
   const [showMeditation, setShowMeditation] = useState(false)
   const [reset, setReset] = useState(false)
   const [skip, setSkip] = useState()
+  const [addTime, setAddTime] = useState(false)
   const [intervalCount, setIntervalCount] = useState(0)
   const [sessionCount, setSessionCount] = useState(1)
 
@@ -18,6 +19,10 @@ function App() {
 
   const triggerSkip = () => {
     setSkip(true)
+  }
+
+  const timeAddition = () => {
+    setAddTime(true)
   }
 
   const openMeditation = () => {
@@ -64,8 +69,14 @@ function App() {
         skip={skip}
         setSkip={setSkip}
         openMeditation={openMeditation}
+        addTime={addTime}
+        setAddTime={setAddTime}
       />
-      <Footer hidden={showSettings || showMeditation} triggerSkip={triggerSkip} />
+      <Footer 
+        hidden={showSettings || showMeditation} 
+        triggerSkip={triggerSkip} 
+        timeAddition={timeAddition}
+      />
     </div>
   )
 }

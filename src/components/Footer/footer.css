@@ -1,4 +1,19 @@
 #footer{
-  text-align: right;
   padding-bottom: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#footer span {
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10px;
+}
+
+#footer span svg{
+  margin-right: 5px;
 }

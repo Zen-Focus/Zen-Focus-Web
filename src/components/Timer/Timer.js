@@ -5,7 +5,7 @@ import BreakMenu from './BreakMenu/BreakMenu'
 
 import './timer.css'
 
-const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, openMeditation }) => {
+const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, openMeditation, addTime, setAddTime }) => {
   const [timer, setTimer] = useState(null)
   const [time, setTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
   const [intervalTime, setIntervalTime] = useState((localStorage.getItem('zenIntervalLength') || 25) * 60)
@@ -121,6 +121,14 @@ const Timer = ({ hidden, reset, setIntervalCount, intervalCount, skip, setSkip, 
       setSkip(false)
     }
   }, [skip]) //eslint-disable-line
+
+  useEffect(() => {
+    if(addTime){
+      setIntervalTime(intervalTime + 5)
+      setTime((time => time + (5 * 60)))
+      setAddTime(false)
+    }
+  }, [addTime]) //eslint-disable-line
 
   useEffect(() => {
     let intervalTime = localStorage.getItem(currentInterval) || 25
